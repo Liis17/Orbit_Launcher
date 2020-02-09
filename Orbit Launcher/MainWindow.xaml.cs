@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO.Compression;
 
 namespace Orbit_Launcher
 {
@@ -27,13 +28,22 @@ namespace Orbit_Launcher
         
         public MainWindow()
         {
-            FirstWindow firstWindow = new FirstWindow();
-            firstWindow.Show();
+            //FirstWindow firstWindow = new FirstWindow();
+            //firstWindow.Show();
+            MessageBox.Show("Обновление ссылок загрузки");
             InitializeComponent();
             LinkUpdate.MainLinkDownload();
+
+            downloadgray.Visibility = Visibility.Hidden;
+            installgray.Visibility = Visibility.Hidden;
+            opengray.Visibility = Visibility.Hidden;
+
+            UIWork();
         }
 
-        public async void Downloadmaster(object sender, RoutedEventArgs e)
+        
+
+        public async void Downloadgray(object sender, RoutedEventArgs e)
         {
             //var count = graylink.Length;
 
@@ -57,8 +67,37 @@ namespace Orbit_Launcher
             ValueDownload.Text = allBytes / 1024 + "/" + currentBytes / 1024;
             ProgressBarTest.Maximum = currentBytes / 100;
             ProgressBarTest.Value = allBytes / 100;
-
-           
         }
+
+        public void UIWork()
+        {
+            var path1 = "Gray.zip";
+            if (File.Exists(path1) == false)
+            {
+                downloadgray.Visibility = Visibility.Visible;
+                installgray.Visibility = Visibility.Hidden;
+                opengray.Visibility = Visibility.Hidden;
+            }
+            if (File.Exists(path1) == true)
+            {
+                downloadgray.Visibility = Visibility.Hidden;
+                installgray.Visibility = Visibility.Visible;
+                opengray.Visibility = Visibility.Hidden;
+            }
+        }
+
+        public void Installgray(object sender, RoutedEventArgs e)
+        {
+            //распаковка в выбраную дерикторию
+            Process.Start("Gray.zip");
+            Process.Start("cmd");
+        }
+
+        public void Opengray(object sender, RoutedEventArgs e)
+        {
+            //открытие/запуск gray
+        }
+
+        
     }
 }

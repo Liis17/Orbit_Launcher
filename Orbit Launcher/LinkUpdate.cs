@@ -10,8 +10,10 @@ namespace Orbit_Launcher
 {   
     class LinkUpdate
     {
-        public string[] link;
-        public static void Updatelink()
+        public static List<string> links;
+        public static List<string> AllLinks = new List<string>();
+
+        public static void Updatelink() //начало обновления ссылок
         {
             MainLinkDownload();
         }
@@ -23,36 +25,86 @@ namespace Orbit_Launcher
                 using (var client = new WebClient())
                 {
                     client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/link.all.txt", "MainLink.txt");
-                    AllLinkSearch();
+                    AllLinkSearch("MainLink.txt");
                 }
             });
         } // загрузка списка ссылок на ссылки файлов
 
-        public static void AllLinkSearch()
+        public static void AllLinkSearch(string path)
         {
-            var path = "MainLink.txt"; //название главного файла со ссылками
             var AllValue = File.ReadAllText(path); // чтение этого файла
-            var array = AllValue.Split('^'); // разделение на строки (1 строка одна ссылка)
-            var array2 = array[0].Split('|'); // разделение строки на части (рабочая только вторая)
+            var line = AllValue.Split('^'); // разделение на строки (1 строка одна ссылка)
+            links = line.ToList();
             AllLinkDownload();
         } // поиск ссылки в главном файле со ссылками
 
         public static void AllLinkDownload()
         {
+
+
             Task.Run(() =>
             {
-                using (var client = new WebClient())
+                int counter = 0;
+                foreach (var link in links)
                 {
-                    client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/link.all.txt", "MainLink.txt");
-                    AllLinkDownload();
+
+                    using (var client = new WebClient())
+                    {
+                        if (link != "")
+                        {
+                            client.DownloadFile(link, $"link{counter}.txt");
+                            AllLinks.Add($"link{counter}.txt");
+                        }
+                        
+                    }
+                    counter++;
+                }
+
+                
+                //todo: все скачивания завершены.
+
+
+            });
+        } 
+
+
+        public static void DownloadFiles()
+        {
+            Task.Run(() =>
+            {
+                foreach (var file in AllLinks)
+                {
+
+                    var AllValue = File.ReadAllText(file); // чтение этого файла
+                    var line = AllValue.Split('^'); // разделение на строки (1 строка одна ссылка)
+                    links = line.ToList();
+
+                    foreach (var link in links)
+                    {
+
+                        using (var client = new WebClient())
+                        {
+                            if(link != "")
+                            {
+                                var a = link.Split('/');
+                                var ext = a[a.Length - 1];
+                                client.DownloadFile(link, ext);
+                            }
+                           
+                        }
+                    }
+
+                    //todo: все скачивания завершены.
+
+
+
                 }
             });
-        }
+            
+           
+        } //скачивание файлов
 
-
-
-
-        
+       
 
     }
 }
