@@ -1,0 +1,1 @@
+7z x %cd%\Gray.zip -o"%cd%\Gray"

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbit Launcher", "Orbit Launcher\Orbit Launcher.csproj", "{7C7BD43C-A633-460D-A6E9-999CF1AA30F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbitLauncher", "Orbit Launcher\OrbitLauncher.csproj", "{7C7BD43C-A633-460D-A6E9-999CF1AA30F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

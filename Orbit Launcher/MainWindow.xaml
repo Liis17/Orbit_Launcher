@@ -34,9 +34,10 @@
             <Button Content="Скачать" Canvas.Left="18" Canvas.Top="330" Width="106" Click="Downloadgray" Visibility="Hidden" x:Name="downloadgray"/>
             <Button Content="Установить" Canvas.Left="18" Canvas.Top="330" Width="106" Click="Installgray" Visibility="Visible" x:Name="installgray"/>
             <Button Content="Открыть" Canvas.Left="18" Canvas.Top="330" Width="106" Click="Opengray" Visibility="Hidden" x:Name="opengray"/>
-            
+
             <TextBlock Canvas.Left="563" x:Name="ValueDownload" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="346" Width="176" TextAlignment="Right"/>
             <Button Content="Обновить ссылки" Canvas.Left="39" Canvas.Top="42" Click="Linkupload" Width="183"/>
+            <Button Content="Обновить лаунчер" Canvas.Left="44" Canvas.Top="98" Click="Launcherupload" Width="177"/>
         </Canvas>
     </Grid>
 </Window>

@@ -30,9 +30,9 @@ namespace Orbit_Launcher
         {
             //FirstWindow firstWindow = new FirstWindow();
             //firstWindow.Show();
-            MessageBox.Show("Обновление ссылок загрузки");
+            //MessageBox.Show("Обновление ссылок загрузки");
             InitializeComponent();
-            LinkUpdate.MainLinkDownload();
+            
 
             downloadgray.Visibility = Visibility.Hidden;
             installgray.Visibility = Visibility.Hidden;
@@ -89,8 +89,8 @@ namespace Orbit_Launcher
         public void Installgray(object sender, RoutedEventArgs e)
         {
             //распаковка в выбраную дерикторию
-            Process.Start("Gray.zip");
-            Process.Start("cmd");
+           // Process.Start("Gray.zip");
+            Process.Start("installgray.cmd");
         }
 
         public void Opengray(object sender, RoutedEventArgs e)
@@ -100,7 +100,12 @@ namespace Orbit_Launcher
 
         private void Linkupload(object sender, RoutedEventArgs e)
         {
+            LinkUpdate.MainLinkDownload();
+        }
 
+        private void Launcherupload(object sender, RoutedEventArgs e)
+        {
+            AutoUpdateLauncher.AutoUpdate();
         }
     }
 }
