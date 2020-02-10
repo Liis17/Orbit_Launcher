@@ -69,7 +69,7 @@ namespace Orbit_Launcher
             ProgressBarTest.Value = allBytes / 100;
         }
 
-        public void UIWork()
+        public void UIWork() //проверка для отображения кнопок
         {
             var path1 = "Gray.zip";
             if (File.Exists(path1) == false)
@@ -98,6 +98,9 @@ namespace Orbit_Launcher
             //открытие/запуск gray
         }
 
-        
+        private void Linkupload(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

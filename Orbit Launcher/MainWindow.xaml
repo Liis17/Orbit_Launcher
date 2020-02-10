@@ -12,8 +12,8 @@
         xmlns:local="clr-namespace:Orbit_Launcher"
         mc:Ignorable="d"
         Background="{DynamicResource MaterialDesignPaper}"
-        Title="Orbit_Launcher v0.1" MaxHeight="450" MinHeight="450" MaxWidth="800" MinWidth="800">
-    <Grid>
+        Title="Orbit_Launcher" MaxHeight="450" MinHeight="450" MaxWidth="800" MinWidth="800" Width="790.667">
+    <Grid Margin="0,0,0,81">
         <Canvas>
             <ProgressBar 
                 Height="16" 
@@ -36,6 +36,7 @@
             <Button Content="Открыть" Canvas.Left="18" Canvas.Top="330" Width="106" Click="Opengray" Visibility="Hidden" x:Name="opengray"/>
             
             <TextBlock Canvas.Left="563" x:Name="ValueDownload" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="346" Width="176" TextAlignment="Right"/>
+            <Button Content="Обновить ссылки" Canvas.Left="39" Canvas.Top="42" Click="Linkupload" Width="183"/>
         </Canvas>
     </Grid>
 </Window>
