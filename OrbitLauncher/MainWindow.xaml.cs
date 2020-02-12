@@ -1,20 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
-using System.Text;
 using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.IO.Compression;
 
 namespace Orbit_Launcher
 {
@@ -24,8 +11,9 @@ namespace Orbit_Launcher
     public partial class MainWindow : Window
     {
         public string[] graylink; // ссылка на Gray
-
-        
+        public static string downvelue;
+        public static float maxdown;
+        public static float value;
         public MainWindow()
         {
             //FirstWindow firstWindow = new FirstWindow();
@@ -43,35 +31,44 @@ namespace Orbit_Launcher
 
         
 
-        public async void Downloadgray(object sender, RoutedEventArgs e)
+        public void Downloadgray(object sender, RoutedEventArgs e)
         {
             //var count = graylink.Length;
 
-            using (var client = new WebClient())
-           {
-                client.DownloadProgressChanged += Client_DownloadProgressChanged;
-                client.DownloadDataCompleted += Client_DownloadDataCompleted;
-                await client.DownloadFileTaskAsync("https://github.com/Liis17/StartellingerBee/releases/download/1.0.1.9/app.publish.rar", "fi1le.rar");
-           }
+            //using (var client = new WebClient())
+            //{
+            //    client.DownloadProgressChanged += Client_DownloadProgressChanged;
+            //    client.DownloadDataCompleted += Client_DownloadDataCompleted;
+            //    await client.DownloadFileTaskAsync("https://github.com/Liis17/StartellingerBee/releases/download/1.0.1.9/app.publish.rar", "fi1le.rar");
+            // }
+
+            LinkUpdate.DownloadFiles();
         }
 
-        private void Client_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
+        public static void Client_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
         {
             //todo: ready.
         }
 
-        private void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        public static void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             var currentBytes = (int)e.TotalBytesToReceive;
             var allBytes = (int)e.BytesReceived;
-            ValueDownload.Text = allBytes / 1024 + "/" + currentBytes / 1024;
-            ProgressBarTest.Maximum = currentBytes / 100;
-            ProgressBarTest.Value = allBytes / 100;
+            downvelue = allBytes / 1024 + "/" + currentBytes / 1024;
+            maxdown = currentBytes / 100;
+            value = allBytes / 100;
+        }
+
+        public void A()
+        {
+            ValueDownload.Text = downvelue;
+            ProgressBarTest.Maximum = maxdown;
+            ProgressBarTest.Value = value;
         }
 
         public void UIWork() //проверка для отображения кнопок
         {
-            var path1 = "Gray.zip";
+            var path1 = "Extractor\\Gray.zip";
             if (File.Exists(path1) == false)
             {
                 downloadgray.Visibility = Visibility.Visible;
@@ -88,9 +85,7 @@ namespace Orbit_Launcher
 
         public void Installgray(object sender, RoutedEventArgs e)
         {
-            //распаковка в выбраную дерикторию
-           // Process.Start("Gray.zip");
-            Process.Start("installgray.cmd");
+            Process.Start("Extractor\\installgray.cmd");
         }
 
         public void Opengray(object sender, RoutedEventArgs e)
@@ -107,5 +102,7 @@ namespace Orbit_Launcher
         {
             AutoUpdateLauncher.AutoUpdate();
         }
+
+
     }
 }

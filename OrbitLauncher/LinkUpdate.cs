@@ -24,8 +24,9 @@ namespace Orbit_Launcher
             {
                 using (var client = new WebClient())
                 {
-                    client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/link.all.txt", "MainLink.txt");
-                    AllLinkSearch("MainLink.txt");
+                    var a = "Link\\MainLink.txt";
+                    client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/link.all.txt", a);
+                    AllLinkSearch(a);
                 }
             });
         } // загрузка списка ссылок на ссылки файлов
@@ -52,7 +53,7 @@ namespace Orbit_Launcher
                     {
                         if (link != "")
                         {
-                            client.DownloadFile(link, $"link{counter}.txt");
+                            client.DownloadFile(link, "Link\\" + $"link{counter}.txt");
                             AllLinks.Add($"link{counter}.txt");
                         }
                         
@@ -75,7 +76,7 @@ namespace Orbit_Launcher
                 foreach (var file in AllLinks)
                 {
 
-                    var AllValue = File.ReadAllText(file); // чтение этого файла
+                    var AllValue = File.ReadAllText("Link\\" + file); // чтение этого файла
                     var line = AllValue.Split('^'); // разделение на строки (1 строка одна ссылка)
                     links = line.ToList();
 
@@ -86,9 +87,11 @@ namespace Orbit_Launcher
                         {
                             if(link != "")
                             {
+                                client.DownloadProgressChanged += MainWindow.Client_DownloadProgressChanged;
+                                client.DownloadDataCompleted += MainWindow.Client_DownloadDataCompleted;
                                 var a = link.Split('/');
                                 var ext = a[a.Length - 1];
-                                client.DownloadFile(link, ext);
+                                client.DownloadFileTaskAsync(link, "Extractor\\" + ext);
                             }
                            
                         }
@@ -103,8 +106,6 @@ namespace Orbit_Launcher
             
            
         } //скачивание файлов
-
-       
-
+        
     }
 }

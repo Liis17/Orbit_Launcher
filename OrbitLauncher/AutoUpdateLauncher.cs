@@ -6,17 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Orbit_Launcher
 {
     class AutoUpdateLauncher
     {
+        
         public static string versionlauncher;
         public static void AutoUpdate()
         {
             var pathserver = "VersionServer.txt";
             var pathdownload = "Extractor\\Download.zip";
-            var pathExtractor = "Extractor\\LauncherUpdate.cmd";
+            //var pathExtractor = "Extractor\\LauncherUpdate.cmd";
             var versionserver = "";
             var pathinclient = "VersionClient.txt";
             versionlauncher = File.ReadAllText(pathinclient);
@@ -40,10 +42,11 @@ namespace Orbit_Launcher
                     {
                         using (var client = new WebClient())
                         {
-                            client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/Launcher.version.txt", pathdownload);
+                            client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/ServerVersion.zip", pathdownload);
+                            
                         }
 
-                        Process.Start(pathExtractor);
+                        Process.Start(folder2);
 
 
                     }); // загрузка последней версии лаунчера

@@ -8,5 +8,6 @@ namespace Orbit_Launcher
 {
     class DRM
     {
+        //ты думал что тут будет код?
     }
 }
