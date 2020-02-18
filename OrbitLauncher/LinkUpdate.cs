@@ -24,7 +24,8 @@ namespace Orbit_Launcher
             {
                 using (var client = new WebClient())
                 {
-                    var a = "Link\\MainLink.txt";
+                    Directory.CreateDirectory("Link");
+                    var a = "Link/MainLink.txt";
                     client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/link.all.txt", a);
                     AllLinkSearch(a);
                 }
@@ -53,7 +54,7 @@ namespace Orbit_Launcher
                     {
                         if (link != "")
                         {
-                            client.DownloadFile(link, "Link\\" + $"link{counter}.txt");
+                            client.DownloadFile(link, "Link/" + $"link{counter}.txt");
                             AllLinks.Add($"link{counter}.txt");
                         }
                         
@@ -76,7 +77,7 @@ namespace Orbit_Launcher
                 foreach (var file in AllLinks)
                 {
 
-                    var AllValue = File.ReadAllText("Link\\" + file); // чтение этого файла
+                    var AllValue = File.ReadAllText("Link/" + file); // чтение этого файла
                     var line = AllValue.Split('^'); // разделение на строки (1 строка одна ссылка)
                     links = line.ToList();
 
@@ -91,7 +92,7 @@ namespace Orbit_Launcher
                                 client.DownloadDataCompleted += MainWindow.Client_DownloadDataCompleted;
                                 var a = link.Split('/');
                                 var ext = a[a.Length - 1];
-                                client.DownloadFileTaskAsync(link, "Extractor\\" + ext);
+                                client.DownloadFileTaskAsync(link, "Extractor/" + ext);
                             }
                            
                         }

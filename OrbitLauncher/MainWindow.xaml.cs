@@ -16,6 +16,7 @@ namespace Orbit_Launcher
         public static float value;
         public MainWindow()
         {
+            FirstStart();
             //FirstWindow firstWindow = new FirstWindow();
             //firstWindow.Show();
             //MessageBox.Show("Обновление ссылок загрузки");
@@ -29,6 +30,15 @@ namespace Orbit_Launcher
             UIWork();
         }
 
+        public void FirstStart()
+        {
+            if (File.Exists("VersionClient.txt") == false)
+            {
+                string a = "0";
+                File.WriteAllText("VersionClient.txt", a);
+            }
+        }
+        
         
 
         public void Downloadgray(object sender, RoutedEventArgs e)
@@ -68,7 +78,7 @@ namespace Orbit_Launcher
 
         public void UIWork() //проверка для отображения кнопок
         {
-            var path1 = "Extractor\\Gray.zip";
+            var path1 = "Extractor/Gray.zip";
             if (File.Exists(path1) == false)
             {
                 downloadgray.Visibility = Visibility.Visible;
@@ -85,7 +95,7 @@ namespace Orbit_Launcher
 
         public void Installgray(object sender, RoutedEventArgs e)
         {
-            Process.Start("Extractor\\installgray.cmd");
+            Process.Start("installgray.cmd");
         }
 
         public void Opengray(object sender, RoutedEventArgs e)
@@ -95,12 +105,12 @@ namespace Orbit_Launcher
 
         private void Linkupload(object sender, RoutedEventArgs e)
         {
-            LinkUpdate.MainLinkDownload();
+            LinkUpdate.MainLinkDownload(); // обновление ссылок
         }
 
         private void Launcherupload(object sender, RoutedEventArgs e)
         {
-            AutoUpdateLauncher.AutoUpdate();
+            AutoUpdateLauncher.AutoUpdate(); // обновление лаунчера
         }
 
 

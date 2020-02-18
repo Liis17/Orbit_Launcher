@@ -16,14 +16,14 @@ namespace Orbit_Launcher
         public static string versionlauncher;
         public static void AutoUpdate()
         {
-            var pathserver = "VersionServer.txt";
-            var pathdownload = "Extractor\\Download.zip";
-            //var pathExtractor = "Extractor\\LauncherUpdate.cmd";
+            var pathserver = "VersionServer.txt"; //последняя версия 
+            var pathdownload = "Extractor/Download.zip"; // путь до архива с обновлением
+            var pathExtractor = "LauncherUpdate.cmd";
             var versionserver = "";
             var pathinclient = "VersionClient.txt";
             versionlauncher = File.ReadAllText(pathinclient);
-            var folder1 = "Extractor\\installgray.cmd";
-            var folder2 = "Extractor\\LauncherUpdate.cmd";
+            var folder1 = "installgray.cmd"; // автораспаковщик gray
+            var folder2 = "LauncherUpdate.cmd"; // автораспаковщик обновления
 
             Task.Run(() =>
             {
@@ -43,15 +43,15 @@ namespace Orbit_Launcher
                         using (var client = new WebClient())
                         {
                             client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/ServerVersion.zip", pathdownload);
-                            
+                            Process.Start(pathExtractor);
                         }
 
-                        Process.Start(folder2);
+                        
 
 
                     }); // загрузка последней версии лаунчера
                 }
-
+                
 
             }); // загрузка номера последней версии лаунчера
 
