@@ -1,0 +1,1 @@
+7z x %cd%\Extractor\Gray.zip -o"%cd%\Extractor\Gray"

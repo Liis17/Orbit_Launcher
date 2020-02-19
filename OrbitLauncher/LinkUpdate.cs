@@ -15,7 +15,8 @@ namespace Orbit_Launcher
 
         public static void Updatelink() //начало обновления ссылок
         {
-            MainLinkDownload();
+            //MainLinkDownload();
+            Graydownload.GrayLinkDownload();
         }
 
         public static void MainLinkDownload()
@@ -25,9 +26,9 @@ namespace Orbit_Launcher
                 using (var client = new WebClient())
                 {
                     Directory.CreateDirectory("Link");
-                    var a = "Link/MainLink.txt";
-                    client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/link.all.txt", a);
-                    AllLinkSearch(a);
+                    var MainLink = "Link/MainLink.txt";
+                    client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/link.all.txt", MainLink);
+                    AllLinkSearch(MainLink);
                 }
             });
         } // загрузка списка ссылок на ссылки файлов

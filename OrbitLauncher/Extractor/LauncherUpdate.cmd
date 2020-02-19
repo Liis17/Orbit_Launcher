@@ -1,1 +1,0 @@
-7z x %cd%\Download.zip -o"%cd%\Update"

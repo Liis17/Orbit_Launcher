@@ -19,10 +19,9 @@ namespace Orbit_Launcher
             var pathserver = "VersionServer.txt"; //последняя версия 
             var pathdownload = "Extractor/Download.zip"; // путь до архива с обновлением
             var pathExtractor = "LauncherUpdate.cmd";
-            var versionserver = "";
-            var pathinclient = "VersionClient.txt";
+            var versionserver = ""; // пустая потом заполнится нужна для сравнения
+            var pathinclient = "VersionClient.txt"; // пусть до файла с версией клиента
             versionlauncher = File.ReadAllText(pathinclient);
-            var folder1 = "installgray.cmd"; // автораспаковщик gray
             var folder2 = "LauncherUpdate.cmd"; // автораспаковщик обновления
 
             Task.Run(() =>
@@ -31,7 +30,6 @@ namespace Orbit_Launcher
                 {
                     client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/Launcher.version.txt", pathserver);
                     client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/LauncherUpdate.cmd", folder2);
-                    client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/installgray.cmd", folder1);
                 }
 
                 versionserver = File.ReadAllText(pathserver);
@@ -45,23 +43,14 @@ namespace Orbit_Launcher
                             client.DownloadFile("https://github.com/Liis17/Orbit_Launcher/releases/download/1/ServerVersion.zip", pathdownload);
                             Process.Start(pathExtractor);
                         }
-
-                        
-
-
                     }); // загрузка последней версии лаунчера
-                }
-                
-
+                } 
             }); // загрузка номера последней версии лаунчера
-
-            
         }
 
         public static void MainLinkDownload()
         {
             
         } 
-
     }
 }

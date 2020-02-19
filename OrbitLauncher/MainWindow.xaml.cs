@@ -17,9 +17,7 @@ namespace Orbit_Launcher
         public MainWindow()
         {
             FirstStart();
-            //FirstWindow firstWindow = new FirstWindow();
-            //firstWindow.Show();
-            //MessageBox.Show("Обновление ссылок загрузки");
+
             InitializeComponent();
             
 
@@ -36,6 +34,11 @@ namespace Orbit_Launcher
             {
                 string a = "0";
                 File.WriteAllText("VersionClient.txt", a);
+                LinkUpdate.Updatelink();
+                MessageBox.Show("Спасибо за загрузку лаунчера!" +
+                    " При первом запуске будут скачаны и созданы необходимые файлы" +
+                    " Приложение может не отвечать" +
+                    " Скорость завасит от вашего ПК и скорочти интернета");
             }
         }
         
@@ -69,33 +72,38 @@ namespace Orbit_Launcher
             value = allBytes / 100;
         }
 
-        public void A()
-        {
-            ValueDownload.Text = downvelue;
-            ProgressBarTest.Maximum = maxdown;
-            ProgressBarTest.Value = value;
-        }
+        
 
         public void UIWork() //проверка для отображения кнопок
         {
+            var pathGray = "Extractor/Gray.exe";
             var path1 = "Extractor/Gray.zip";
-            if (File.Exists(path1) == false)
-            {
-                downloadgray.Visibility = Visibility.Visible;
-                installgray.Visibility = Visibility.Hidden;
-                opengray.Visibility = Visibility.Hidden;
-            }
-            if (File.Exists(path1) == true)
+            if (File.Exists(pathGray) == true)
             {
                 downloadgray.Visibility = Visibility.Hidden;
-                installgray.Visibility = Visibility.Visible;
-                opengray.Visibility = Visibility.Hidden;
+                installgray.Visibility = Visibility.Hidden;
+                opengray.Visibility = Visibility.Visible;
+            }
+            else 
+            {
+                if (File.Exists(path1) == false)
+                {
+                    downloadgray.Visibility = Visibility.Visible;
+                    installgray.Visibility = Visibility.Hidden;
+                    opengray.Visibility = Visibility.Hidden;
+                }
+                if (File.Exists(path1) == true)
+                {
+                    downloadgray.Visibility = Visibility.Hidden;
+                    installgray.Visibility = Visibility.Visible;
+                    opengray.Visibility = Visibility.Hidden;
+                }
             }
         }
 
         public void Installgray(object sender, RoutedEventArgs e)
         {
-            Process.Start("installgray.cmd");
+            Process.Start("Installgray.cmd");//установка gray
         }
 
         public void Opengray(object sender, RoutedEventArgs e)
