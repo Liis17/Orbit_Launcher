@@ -119,10 +119,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AutoUpdateLauncher.cs" />
-    <Compile Include="Graydownload.cs" />
-    <Compile Include="DRM.cs" />
-    <Compile Include="LinkUpdate.cs" />
+    <Compile Include="OldCode\AutoUpdateLauncher.cs" />
+    <Compile Include="OldCode\Graydownload.cs" />
+    <Compile Include="OldCode\DRM.cs" />
+    <Compile Include="OldCode\LinkUpdate.cs" />
     <Compile Include="FirstWindow.xaml.cs">
       <DependentUpon>FirstWindow.xaml</DependentUpon>
     </Compile>
@@ -183,9 +183,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extractor\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.1.0-ci981\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.0-ci981\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
