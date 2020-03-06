@@ -12,32 +12,54 @@
         xmlns:local="clr-namespace:Orbit_Launcher"
         mc:Ignorable="d"
         Background="{DynamicResource MaterialDesignPaper}"
-        Title="Orbit_Launcher" MaxHeight="450" MinHeight="450" MaxWidth="800" MinWidth="800" Width="792.405">
-    <Grid Margin="0,0,0,81">
-        <Canvas>
-            <ProgressBar 
-                Height="16" 
-                Width="727" 
-                Maximum="100" 
-                Minimum="0" 
-                Value="0" 
-                RenderTransformOrigin="0.499,0.467" 
-                Canvas.Left="16" 
-                Canvas.Top="373" 
-                x:Name="ProgressBarTest" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                HorizontalContentAlignment="Stretch" 
-                VerticalContentAlignment="Bottom"
-                
-                />
-            <Button Content="Скачать" Canvas.Left="18" Canvas.Top="330" Width="106" Click="Downloadgray" Visibility="Hidden" x:Name="downloadgray"/>
-            <Button Content="Установить" Canvas.Left="18" Canvas.Top="330" Width="106" Click="Installgray" Visibility="Visible" x:Name="installgray"/>
-            <Button Content="Открыть" Canvas.Left="18" Canvas.Top="330" Width="106" Click="Opengray" Visibility="Hidden" x:Name="opengray"/>
+        Title="OrbitLauncher"  MinHeight="535" MinWidth="960" Height="535" Width="960">
+    <Grid Margin="0,0,0,0" x:Name="MainPanel"  Background="#ffa665">
+        <UniformGrid Rows="1" Columns="15" HorizontalAlignment="Left">
 
-            <TextBlock Canvas.Left="563" x:Name="ValueDownload" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="346" Width="176" TextAlignment="Right"/>
-            <Button Content="Обновить ссылки" Canvas.Left="39" Canvas.Top="42" Click="Linkupload" Width="183"/>
-            <Button Content="Обновить лаунчер" Canvas.Left="44" Canvas.Top="98" Click="Launcherupload" Width="177"/>
-        </Canvas>
+            <Button x:Name="NewsPage" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Top" Width="59" Height="48"/>
+
+            <Button x:Name="OrbiLauncherPage" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Top" Width="59" Height="48"/>
+
+            <Button x:Name="OrpadPage" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Top" Width="59" Height="48"/>
+
+            <Button x:Name="GrayPage" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Top" Width="59" Height="48"/>
+
+        </UniformGrid>
+
+
+
+
+        <Grid x:Name="OrpadCanvas" Background="#ffc296" Margin="0,54,0,0" Visibility="Visible">
+            <ProgressBar x:Name="PBOrpad"  Maximum="100" Minimum="0" Value="50" Canvas.Top="432" Canvas.Left="0" VerticalAlignment="Bottom" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Bottom" Cursor="Wait" Height="18" BorderBrush="#FFFB6A23" Foreground="#FF45C30B">
+                <ProgressBar.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform Angle="-90" CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FFFBAF8A"/>
+                        <GradientStop Color="#FFFB6A23" Offset="0.217"/>
+                        <GradientStop Color="#FFFBAF8A" Offset="1"/>
+                    </LinearGradientBrush>
+                </ProgressBar.Background>
+                <ProgressBar.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFF683B" Offset="0"/>
+                        <GradientStop Color="#FFB62626" Offset="1"/>
+                    </LinearGradientBrush>
+                </ProgressBar.OpacityMask>
+            </ProgressBar>
+            <Slider x:Name="testslider" Margin="9,0,8,20" Height="18" Maximum="100" VerticalAlignment="Bottom" ValueChanged="Slider_ValueChanged"/>
+
+
+            <Button Content="Скачать" HorizontalAlignment="Left" Margin="13,120,0,298" Width="114" Height="Auto" Click="Button_Click"/>
+
+
+
+        </Grid>
     </Grid>
 </Window>
