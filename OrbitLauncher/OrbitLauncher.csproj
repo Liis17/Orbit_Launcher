@@ -89,6 +89,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -164,6 +165,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\LauncherUpdate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Orpad.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.1.0-ci981\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.0-ci981\build\MaterialDesignThemes.targets')" />

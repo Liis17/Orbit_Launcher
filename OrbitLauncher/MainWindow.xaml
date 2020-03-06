@@ -18,9 +18,56 @@
 
             <Button x:Name="NewsPage" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Top" Width="59" Height="48"/>
 
-            <Button x:Name="OrbiLauncherPage" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Top" Width="59" Height="48"/>
+            <Button x:Name="OrbiLauncherPage" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Top" Width="59" Height="48">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform Angle="-171.027" CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#7F431397" Offset="0"/>
+                        <GradientStop Color="#3D8743FF" Offset="1"/>
+                        <GradientStop Color="#656A34C9" Offset="0.16"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="Icons/LauncherUpdate.png" Stretch="Uniform">
+                        <ImageBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ImageBrush.RelativeTransform>
+                    </ImageBrush>
+                </Button.Background>
+            </Button>
 
-            <Button x:Name="OrpadPage" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Top" Width="59" Height="48"/>
+            <Button x:Name="OrpadPage" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Top" Width="59" Height="48">
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform Angle="-171.027" CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#7F431397" Offset="0"/>
+                        <GradientStop Color="#3D8743FF" Offset="1"/>
+                        <GradientStop Color="#656A34C9" Offset="0.16"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+                <Button.Background>
+                    <ImageBrush ImageSource="Icons/Orpad.ico" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
 
             <Button x:Name="GrayPage" HorizontalAlignment="Left" Margin="2,2,2,2" VerticalAlignment="Top" Width="59" Height="48"/>
 
@@ -53,11 +100,50 @@
                     </LinearGradientBrush>
                 </ProgressBar.OpacityMask>
             </ProgressBar>
-            <Slider x:Name="testslider" Margin="9,0,8,20" Height="18" Maximum="100" VerticalAlignment="Bottom" ValueChanged="Slider_ValueChanged"/>
+            <Slider x:Name="testslider" Visibility="Hidden" Margin="9,0,8,20" Height="18" Maximum="100" VerticalAlignment="Bottom" ValueChanged="Slider_ValueChanged"/>
 
 
-            <Button Content="Скачать" HorizontalAlignment="Left" Margin="13,120,0,298" Width="114" Height="Auto" Click="Button_Click"/>
+            <Button x:Name="OrpadDownloadButton" Content="Установить" HorizontalAlignment="Left" Margin="94,158,0,0" Width="114" Height="32" Click="Button_Click" VerticalAlignment="Top"/>
+            <Button x:Name="OrpadUpdateButton" Content="Обновить" HorizontalAlignment="Left" Margin="93,200,0,0" Width="114" Height="32" VerticalAlignment="Top" Click="OrpadUpdateButton_Click"/>
+            
+            
+            <TextBlock Text="Orpad" FontSize="95" FontFamily="MS Reference Sans Serif" TextDecorations="{x:Null}" Cursor="IBeam" Margin="25,12,29,0" Height="131" VerticalAlignment="Top" >
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform Angle="-45" CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FFD67035" Offset="0"/>
+                        <GradientStop Color="#FFFFA626" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
 
+
+
+            <TextBlock  FontSize="25" FontFamily="MS Reference Sans Serif" Margin="0,0,10,51" Height="263" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="475" UseLayoutRounding="False" TextWrapping="WrapWithOverflow" 
+                        Text="Orpad - описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание описание" 
+                        >
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                                <RotateTransform Angle="-45" CenterY="0.5" CenterX="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FFB26438" Offset="0.004"/>
+                        <GradientStop Color="#FFCF4C02" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
 
 
         </Grid>
