@@ -105,8 +105,14 @@
 
             <Button x:Name="OrpadDownloadButton" Content="Установить" HorizontalAlignment="Left" Margin="94,158,0,0" Width="114" Height="32" Click="Button_Click" VerticalAlignment="Top"/>
             <Button x:Name="OrpadUpdateButton" Content="Обновить" HorizontalAlignment="Left" Margin="93,200,0,0" Width="114" Height="32" VerticalAlignment="Top" Click="OrpadUpdateButton_Click"/>
-            
-            
+            <Button x:Name="OrpadLaunchButton" Content="Запустить" HorizontalAlignment="Left" Margin="94,241,0,0" Width="114" Height="32" VerticalAlignment="Top" Click="OrpadLaunchButton_Click"/>
+
+            <TextBlock x:Name="Orpad_last_versoin" HorizontalAlignment="Left" Margin="7,207,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="82" TextAlignment="Right"/>
+            <TextBlock x:Name="Orpad_version" HorizontalAlignment="Left" Margin="212,207,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="82" TextAlignment="Left"/>
+
+
+
+
             <TextBlock Text="Orpad" FontSize="95" FontFamily="MS Reference Sans Serif" TextDecorations="{x:Null}" Cursor="IBeam" Margin="25,12,29,0" Height="131" VerticalAlignment="Top" >
                 <TextBlock.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -144,6 +150,7 @@
                     </LinearGradientBrush>
                 </TextBlock.Foreground>
             </TextBlock>
+           
 
 
         </Grid>

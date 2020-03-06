@@ -6,6 +6,7 @@ using System;
 
 
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace Orbit_Launcher
 {
@@ -21,8 +22,12 @@ namespace Orbit_Launcher
         {
 
             InitializeComponent();
+            Directory_Create();
+            Orpad_Check_Update();
+            Orpad_download_versionInfo();
             Orpad_check();
-            check_install();
+            Check_install();
+            Check_for_launch();
 
         }
 
@@ -59,13 +64,19 @@ namespace Orbit_Launcher
                 var Link = "https://github.com/Liis17/Orpad/releases/download/fix_beta/Orpad.exe";
 
                 await client.DownloadFileTaskAsync(Link, Folder);
-                Orpad_check();
+
+                var a = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Orpad_LastVersion.d"); ;
+
+                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad_Version.d", a);
+
             }
             OrpadDownloadButton.IsEnabled = true;
             Orpad_check();
-            check_install();
+            Check_install();
+            Check_for_launch();
+            Orpad_Check_Update();
         } // загрузка блокнота
-        public void check_install()
+        public void Check_install()
         {
             var file = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.exe";
             if (File.Exists(file) == true)
@@ -89,10 +100,64 @@ namespace Orbit_Launcher
 
                 await client.DownloadFileTaskAsync(Link, Folder);
                 Orpad_check();
+
+                var a = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Orpad_LastVersion.d"); ;
+
+                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad_Version.d", a);
+
+
+
+
             }
             OrpadUpdateButton.IsEnabled = true;
             Orpad_check();
+            Orpad_Check_Update();
         } // обновление блокнота
+        private void OrpadLaunchButton_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.exe");
+        } //запуск блокнота
+        public void Check_for_launch()
+        {
+            var file = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.exe";
+            if (File.Exists(file) == true)
+            {
+                OrpadLaunchButton.IsEnabled = true;
+            }
+            if (File.Exists(file) == false)
+            {
+                OrpadLaunchButton.IsEnabled = false;
+            }
+        }//упарвление кнопкой запуска
+        public void Directory_Create()
+        {
+            var a = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad";
+            Directory.CreateDirectory(a);
+
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad_Version.d") == false)
+            {
+                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad_Version.d","0");
+            }
+
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Orpad_LastVersion.d") == false)
+            {
+                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Orpad_LastVersion.d", "0");
+            }
+        } // создание папки для блокнота
+        public async void Orpad_download_versionInfo()
+        {
+            using (var client = new WebClient())
+            {
+                await client.DownloadFileTaskAsync("https://github.com/Liis17/Orpad/releases/download/fix_beta/Orpad_LastVersion.d", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Orpad_LastVersion.d");
+                Orpad_Check_Update();
+            }
+            
+        }
+        public void Orpad_Check_Update()
+        {
+            Orpad_last_versoin.Text = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Orpad_LastVersion.d");
+            Orpad_version.Text = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad_Version.d");
+        }
 
 
 
@@ -114,6 +179,8 @@ namespace Orbit_Launcher
         {
             PBOrpad.Value = testslider.Value;
         } // для дебага, удалить
+
+        
         #endregion
 
         //if (System.Windows.Forms.MessageBox.Show("Подтвердите переход по ссылке 'https://ww3.orbitinspace.site/program/Orpad'",
