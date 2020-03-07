@@ -28,6 +28,7 @@ namespace Orbit_Launcher
             Orpad_check();
             Check_install();
             Check_for_launch();
+            PBOrpad.Value = 0;
 
         }
 
@@ -155,8 +156,8 @@ namespace Orbit_Launcher
         }
         public void Orpad_Check_Update()
         {
-            Orpad_last_versoin.Text = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Orpad_LastVersion.d");
-            Orpad_version.Text = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad_Version.d");
+            Orpad_last_versoin.Text = "Последняя версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Orpad_LastVersion.d");
+            Orpad_version.Text = "Установленая версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad_Version.d");
         }
 
 
@@ -180,7 +181,7 @@ namespace Orbit_Launcher
             PBOrpad.Value = testslider.Value;
         } // для дебага, удалить
 
-        
+
         #endregion
 
         //if (System.Windows.Forms.MessageBox.Show("Подтвердите переход по ссылке 'https://ww3.orbitinspace.site/program/Orpad'",
@@ -193,5 +194,22 @@ namespace Orbit_Launcher
         //{
         //    //
         //}
+
+
+        WindowState prevState;
+
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            if (WindowState == WindowState.Minimized)
+                Hide();
+            else
+                prevState = WindowState;
+        }
+
+        private void TaskbarIcon_TrayLeftMouseDown(object sender, RoutedEventArgs e)
+        {
+            Show();
+            WindowState = prevState;
+        }
     }
 }
