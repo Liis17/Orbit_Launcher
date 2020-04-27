@@ -31,6 +31,7 @@
                 <Button Content="Скачать" Margin="36,0,38,5" Click="Button_Click" Height="32" VerticalAlignment="Bottom"/>
                 <Path Fill="Red" Data="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16" Stretch="Fill" Height="24" Width="24" Margin="230.332,0,7.667,5.332" VerticalAlignment="Bottom" />
                 <Path Fill="Red" Data="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16" Stretch="Fill" Height="24" Width="24" Margin="8.166,0,229.833,7.166" VerticalAlignment="Bottom" />
+                <TextBlock x:Name="description" FontSize="15" Text="Установленная версия: 000000000" Margin="7,0,0,93" Foreground="White" Height="301" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="247" FontFamily="Arial Rounded MT Bold" TextAlignment="Center" TextWrapping="WrapWithOverflow"/>
             </Grid>
 
             <Grid Width="85" Canvas.Left="12" Canvas.Top="12" Margin="0,12,12,42" HorizontalAlignment="Right" Background="#3F555555">
@@ -81,12 +82,15 @@
 
             <!--#endregion-->
 
+            <TextBlock x:Name="versiononline" FontSize="15" Text="Последняя версия: 000000000" Margin="287,0,0,61" Foreground="White" Height="18" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="290" FontFamily="Arial Rounded MT Bold"/>
+            <TextBlock x:Name="versionoffline" FontSize="15" Text="Установленная версия: 000000000" Margin="287,0,0,40" Foreground="White" Height="18" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="290" FontFamily="Arial Rounded MT Bold"/>
+
 
         </Grid>
 
 
         <Grid x:Name="ArchiverdownGrid" Background="White" Visibility="Hidden">
-            <ProgressBar x:Name="ArchiverProgessbar" Height="15" Value="35" Margin="192,0,192,232" VerticalAlignment="Bottom" Foreground="#FF0FD106" BorderBrush="{x:Null}" Background="#FFE0E0E0"/>
+            <ProgressBar x:Name="ArchiverProgessbar" Height="15" Value="0" Margin="192,0,192,232" VerticalAlignment="Bottom" Foreground="#FF0FD106" BorderBrush="{x:Null}" Background="#FFE0E0E0"/>
             <TextBlock Margin="20,0,11,251" FontSize="24" TextWrapping="Wrap" Text="Выполняется загрузка файлов, ожидайте..." VerticalAlignment="Bottom" Height="48" TextAlignment="Center"/>
             <TextBlock x:Name="ArchiverText" Margin="20,0,11,177" FontSize="24" TextWrapping="Wrap" Text="0/2" VerticalAlignment="Bottom" Height="48" TextAlignment="Center"/>
 
