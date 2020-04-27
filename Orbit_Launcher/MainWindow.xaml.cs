@@ -76,13 +76,43 @@ namespace Orbit_Launcher
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (var client = new WebClient())
+            var foldergame = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "OrbitinSpace" + "\\";
+            var folderprogramm = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\";
+            if (adv == 0)
             {
-                var Folder1 = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\" + "gg.zip";
-                var Link1 = "https://getfile.dokpub.com/yandex/get/https://yadi.sk/d/HGJO9G_srk1yEw";
-                await client.DownloadFileTaskAsync(Link1, Folder1);
+                MessageBox.Show("Зачем, лаунчер же у тебя уже есть");
             }
-        } //тест
+            if (adv == 100)
+            {
+                using (var client = new WebClient())
+                {
+                    await client.DownloadFileTaskAsync(gray_linkarchive, foldergame + "DownloadCache");
+                }
+            }
+            if (adv == 101)
+            {
+                MessageBox.Show("Нет, ты не скачаешь тут ничего", "Предупреждение");
+            }
+            if (adv == 102)
+            {
+                MessageBox.Show("Нет, ты не скачаешь тут ничего","Предупреждение");
+            }
+            if (adv == 200)
+            {
+                using (var client = new WebClient())
+                {
+                    await client.DownloadFileTaskAsync(orpad_linkarchive, folderprogramm);
+                }
+            }
+            if (adv == 201)
+            {
+                using (var client = new WebClient())
+                {
+                    await client.DownloadFileTaskAsync(whattomount_linkarchive, folderprogramm);
+                }
+            }
+            
+        } //Загрузка
 
         #region проверка архиватора и его загрузка
         public void CheckArchiver()
@@ -338,7 +368,7 @@ namespace Orbit_Launcher
             {
                 var orpad_string = File.ReadAllText(folder_orpad);
                 var orpad_arroy = orpad_string.Split('\n');
-                orpad_linkarchive = "https://getfile.dokpub.com/yandex/get/" + orpad_arroy[0];
+                orpad_linkarchive = orpad_arroy[0];
                 orpad_versiononline = "Последняя версия: " + orpad_arroy[1];
             }
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "orpad.d") == true)
@@ -356,7 +386,7 @@ namespace Orbit_Launcher
             {
                 var whattomount_string = File.ReadAllText(folder_whattomount);
                 var whattomount_arroy = whattomount_string.Split('\n');
-                whattomount_linkarchive = "https://getfile.dokpub.com/yandex/get/" + whattomount_arroy[0];
+                whattomount_linkarchive = whattomount_arroy[0];
                 whattomount_versiononline = "Последняя версия: " + whattomount_arroy[1];
             }
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "WhatToMount" + "\\" + "WhatToMount.d") == true)

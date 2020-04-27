@@ -31,7 +31,7 @@
                 <Button Content="Скачать" Margin="36,0,38,5" Click="Button_Click" Height="32" VerticalAlignment="Bottom"/>
                 <Path Fill="Red" Data="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16" Stretch="Fill" Height="24" Width="24" Margin="230.332,0,7.667,5.332" VerticalAlignment="Bottom" />
                 <Path Fill="Red" Data="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16" Stretch="Fill" Height="24" Width="24" Margin="8.166,0,229.833,7.166" VerticalAlignment="Bottom" />
-                <TextBlock x:Name="description" FontSize="15" Text="Установленная версия: 000000000" Margin="7,0,0,93" Foreground="White" Height="301" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="247" FontFamily="Arial Rounded MT Bold" TextAlignment="Center" TextWrapping="WrapWithOverflow"/>
+                <TextBlock x:Name="description" FontSize="15" Text="Установленная версия: 000000000" Margin="7,6,0,0" Foreground="White" HorizontalAlignment="Left" Width="247" FontFamily="Arial Rounded MT Bold" TextAlignment="Center" TextWrapping="WrapWithOverflow" Height="301" VerticalAlignment="Top"/>
             </Grid>
 
             <Grid Width="85" Canvas.Left="12" Canvas.Top="12" Margin="0,12,12,42" HorizontalAlignment="Right" Background="#3F555555">
@@ -39,20 +39,44 @@
                     <Grid>
                         <Grid Height="86" VerticalAlignment="Top">
                             <TextBlock FontSize="10" Margin="8,4" TextWrapping="Wrap" Text="Главная" VerticalAlignment="Top" Foreground="White" TextAlignment="Center" FontFamily="Arial Rounded MT Bold" TextDecorations="{x:Null}"/>
-                            <Button x:Name="Mainpage" Margin="8,17,8,0" VerticalAlignment="Top" Width="69" Height="69" Click="Mainpage_Click" />
+                            <Button x:Name="Mainpage" Margin="8,17,8,0" VerticalAlignment="Top" Width="69" Height="69" Click="Mainpage_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" >
+                                <Button.Background>
+                                    <ImageBrush Stretch="UniformToFill" ImageSource="icon/noicon.png"/>
+                                </Button.Background>
+                            </Button>
                         </Grid>
 
                         <Grid Margin="0,86,0,0" Height="240" VerticalAlignment="Top">
                             <TextBlock FontSize="10" Margin="8,4" TextWrapping="Wrap" Text="Игры" VerticalAlignment="Top" Foreground="White" TextAlignment="Center" FontFamily="Arial Rounded MT Bold" TextDecorations="{x:Null}"/>
-                            <Button x:Name="Graypage" Margin="8,17,8,0" VerticalAlignment="Top" Width="69" Height="69" Click="Graypage_Click" />
-                            <Button x:Name="Baetheexpage" Margin="8,94,8,0" VerticalAlignment="Top" Width="69" Height="69" Click="Baetheexpage_Click" />
-                            <Button x:Name="FLinepage" Margin="8,171,8,0" VerticalAlignment="Top" Width="69" Height="69" Click="FLinepage_Click" />
+                            <Button x:Name="Graypage" Margin="8,17,8,0" VerticalAlignment="Top" Width="69" Height="69" Click="Graypage_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" >
+                                <Button.Background>
+                                    <ImageBrush Stretch="UniformToFill" ImageSource="icon/gray.png"/>
+                                </Button.Background>
+                            </Button>
+                            <Button x:Name="Baetheexpage" Margin="8,94,8,0" VerticalAlignment="Top" Width="69" Height="69" Click="Baetheexpage_Click" Foreground="{x:Null}" BorderBrush="{x:Null}" >
+                                <Button.Background>
+                                    <ImageBrush Stretch="UniformToFill" ImageSource="icon/noicon.png"/>
+                                </Button.Background>
+                            </Button>
+                            <Button x:Name="FLinepage" Margin="8,171,8,0" VerticalAlignment="Top" Width="69" Height="69" Click="FLinepage_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" >
+                                <Button.Background>
+                                    <ImageBrush ImageSource="icon/noicon.png" Stretch="UniformToFill"/>
+                                </Button.Background>
+                            </Button>
                         </Grid>
 
                         <Grid Margin="0,328,0,0" Height="163" VerticalAlignment="Top">
                             <TextBlock FontSize="10" Margin="8,4" TextWrapping="Wrap" Text="Программы" VerticalAlignment="Top" Foreground="White" TextAlignment="Center" FontFamily="Arial Rounded MT Bold" TextDecorations="{x:Null}"/>
-                            <Button x:Name="Orpadpage" Margin="8,17,8,0" VerticalAlignment="Top" Width="69" Height="69" Click="Orpadpage_Click" />
-                            <Button x:Name="WhatToMountpage" Margin="8,94,8,0" VerticalAlignment="Top" Width="69" Height="69" Click="WhatToMountpage_Click" />
+                            <Button x:Name="Orpadpage" Margin="8,17,8,0" VerticalAlignment="Top" Width="69" Height="69" Click="Orpadpage_Click" Foreground="{x:Null}" BorderBrush="{x:Null}" >
+                                <Button.Background>
+                                    <ImageBrush Stretch="UniformToFill" ImageSource="icon/orpad.png"/>
+                                </Button.Background>
+                            </Button>
+                            <Button x:Name="WhatToMountpage" Margin="8,94,8,0" VerticalAlignment="Top" Width="69" Height="69" Click="WhatToMountpage_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" >
+                                <Button.Background>
+                                    <ImageBrush Stretch="UniformToFill" ImageSource="icon/whattomount.png"/>
+                                </Button.Background>
+                            </Button>
                         </Grid>
 
                     </Grid>
