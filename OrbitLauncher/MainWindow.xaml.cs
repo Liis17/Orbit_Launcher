@@ -257,7 +257,7 @@ namespace Orbit_Launcher
                 GrayDownloadButton.IsEnabled = true;
             }
 
-        } //проверка на наличение установленого блокнота
+        } //проверка на наличение установленой игры
         public async void DownloadGray()
         {
             GrayDownloadButton.IsEnabled = false;
@@ -265,20 +265,21 @@ namespace Orbit_Launcher
             {
                 client.DownloadProgressChanged += Client_DownloadProgressChanged_Gray;
 
-                var Folder1 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Cache" + "\\" + "GrayLink.d";
-                var Link1 = "https://github.com/Liis17/gray/releases/download/TestTag/GrayLink.d";
+                var Folder1 = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\" + "gg.png";
+                var Link1 = "https://yadi.sk/i/HZjzct2V2aK71w";
                 await client.DownloadFileTaskAsync(Link1, Folder1);
 
                 var text = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Cache" + "\\" + "GrayLink.d");
                 linkGray = text.Split('!');
-
+                var counter = 0;
                 foreach (var link in linkGray)
                 {
-                    await client.DownloadFileTaskAsync(Link1, Folder1);
+                    await client.DownloadFileTaskAsync(linkGray[counter], Folder1);
+                    counter++;
                 }
 
 
-                var a = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray_LastVersion.d"); ;
+                var a = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Gray_LastVersion.d"); ;
 
                 File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray_Version.d", a);
 
@@ -291,26 +292,26 @@ namespace Orbit_Launcher
         } // загрузка блокнота
         public void Check_install_Gray()
         {
-            var file = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.exe";
+            var file = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray.exe";
             if (File.Exists(file) == true)
             {
-                OrpadUpdateButton.IsEnabled = true;
+                GrayUpdateButton.IsEnabled = true;
             }
             if (File.Exists(file) == false)
             {
-                OrpadUpdateButton.IsEnabled = false;
+                GrayUpdateButton.IsEnabled = false;
             }
         } // управление кнопкой обновления блокнота
         public async void UpdateGray()
         {
-            OrpadUpdateButton.IsEnabled = false;
+            GrayUpdateButton.IsEnabled = false;
             using (var client = new WebClient())
             {
                 client.DownloadProgressChanged += Client_DownloadProgressChanged_Gray;
 
-                OrpadLaunchButton.IsEnabled = false;
+                GrayLaunchButton.IsEnabled = false;
 
-                var Folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.exe";
+                var Folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray.exe";
                 var Link = "https://github.com/Liis17/Orpad/releases/download/fix_beta/Orpad.exe";
 
                 await client.DownloadFileTaskAsync(Link, Folder);
@@ -332,11 +333,11 @@ namespace Orbit_Launcher
         } // обновление блокнота
         private void GrayLaunchButton_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.exe");
+            Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray.exe");
         } //запуск блокнота
         public void Check_for_launch_Gray()
         {
-            var file = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.exe";
+            var file = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray.exe";
             if (File.Exists(file) == true)
             {
                 GrayLaunchButton.IsEnabled = true;
@@ -348,32 +349,32 @@ namespace Orbit_Launcher
         }//управление кнопкой запуска
         public void Directory_Create_Gray()
         {
-            var a = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad";
+            var a = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray";
             Directory.CreateDirectory(a);
 
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad_Version.d") == false)
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray_Version.d") == false)
             {
-                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad_Version.d", "0");
+                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray_Version.d", "0");
             }
 
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Orpad_LastVersion.d") == false)
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Gray_LastVersion.d") == false)
             {
-                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Orpad_LastVersion.d", "0");
+                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Gray_LastVersion.d", "0");
             }
         } // создание папки для блокнота
         public async void Gray_download_versionInfo() //узнавание последней версии блокнота
         {
             using (var client = new WebClient())
             {
-                await client.DownloadFileTaskAsync("https://github.com/Liis17/Orpad/releases/download/fix_beta/Orpad_LastVersion.d", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Orpad_LastVersion.d");
+                await client.DownloadFileTaskAsync("https://github.com/Liis17/Orpad/releases/download/fix_beta/Orpad_LastVersion.d", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Gray_LastVersion.d");
                 Gray_Check_Update();
             }
 
         }
         public void Gray_Check_Update()
         {
-            Orpad_last_versoin.Text = "Последняя версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Orpad_LastVersion.d");
-            Orpad_version.Text = "Установленая версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad_Version.d");
+            Orpad_last_versoin.Text = "Последняя версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "OrbitLauncher" + "\\" + "Gray_LastVersion.d");
+            Orpad_version.Text = "Установленая версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray_Version.d");
         } //вывод версий на экран
 
 
@@ -428,6 +429,11 @@ namespace Orbit_Launcher
             Show();
             WindowState = prevState;
         } // наверное для вывода в трей
+
+        public void CanvasUpdate()
+        {
+            
+        }
 
         
     }
