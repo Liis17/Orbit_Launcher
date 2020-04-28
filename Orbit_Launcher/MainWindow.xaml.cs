@@ -37,6 +37,8 @@ namespace Orbit_Launcher
         public string gray_versionoffline; // версия на устройстве
         public string gray_description = "Тестовый проект созданый для тестирования различных штук для других проектов"; // описание
 
+        public string gray_lastversion;
+
 
         public string baetheex_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/Baetheex.d"; //ссылка на ссылку с архивом
         public string baetheex_linkarchive; // ссылка на скачивание архива;
@@ -44,11 +46,17 @@ namespace Orbit_Launcher
         public string baetheex_versionoffline; // версия на устройстве
         public string baetheex_description = "Замороженный проект, его загрузка нереконемдуется. В скором времени если у меня появится делание я сделаю его ремастер"; // описание
 
+        public string baetheex_lastversion;
+
+
         public string fline_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/FLine.d"; //ссылка на ссылку с архивом
         public string fline_linkarchive; // ссылка на скачивание архива;
         public string fline_versiononline; // версия в сети
         public string fline_versionoffline; // версия на устройстве
         public string fline_description = "Замороженный проект, рабочих сборок которого больше нет. В будующем возможен ремастер"; // описание
+
+        public string fline_lastversion;
+
 
         public string orpad_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/Orpad.d"; //ссылка на ссылку с архивом
         public string orpad_linkarchive; // ссылка на скачивание архива;
@@ -56,17 +64,29 @@ namespace Orbit_Launcher
         public string orpad_versionoffline; // версия на устройстве
         public string orpad_description = "Блокнот, просто блокнот, больше нечего о нем сказать"; // описание
 
+        public string orpad_lastversion;
+
+
         public string whattomount_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/WhatToMount.d"; //ссылка на ссылку с архивом
         public string whattomount_linkarchive; // ссылка на скачивание архива;
         public string whattomount_versiononline; // версия в сети
         public string whattomount_versionoffline; // версия на устройстве
         public string whattomount_description = "Эта программа выдает случайную строку из файла, вот зачем эта программа вам тут нужна я не знаю"; // описание
 
+        public string whattomount_lastversion;
+
 
         #endregion
 
         public MainWindow()
         {
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray");
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Baetheex");
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "FLine");
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad");
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "WhatToMount");
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Cache");
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher");
             screen = 0;
             InitializeComponent();
             CheckArchiver();
@@ -76,43 +96,84 @@ namespace Orbit_Launcher
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var foldergame = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "OrbitinSpace" + "\\";
+            ButtonDownload.IsEnabled = false;
+            Mainpage.IsEnabled = false;
+            Graypage.IsEnabled = false;
+            Baetheexpage.IsEnabled = false;
+            FLinepage.IsEnabled = false;
+            Orpadpage.IsEnabled = false;
+            WhatToMountpage.IsEnabled = false;
+
+            var foldergame = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\";
             var folderprogramm = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\";
-            if (adv == 0)
+            if (screen == 0)
             {
                 MessageBox.Show("Зачем, лаунчер же у тебя уже есть");
             }
-            if (adv == 100)
+            if (screen == 100)
             {
                 using (var client = new WebClient())
                 {
-                    await client.DownloadFileTaskAsync(gray_linkarchive, foldergame + "DownloadCache");
+                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownComp);
+                    client.DownloadProgressChanged += ProgressPanel;
+                    await client.DownloadFileTaskAsync(gray_linkarchive, foldergame + "DownloadCache" + "\\" + "GrayRelease.zip");
                 }
+                File.WriteAllText(foldergame + "Gray" + "\\" + "Gray.d", gray_lastversion);
             }
-            if (adv == 101)
+            if (screen == 101)
             {
                 MessageBox.Show("Нет, ты не скачаешь тут ничего", "Предупреждение");
             }
-            if (adv == 102)
+            if (screen == 102)
             {
                 MessageBox.Show("Нет, ты не скачаешь тут ничего","Предупреждение");
             }
-            if (adv == 200)
+            if (screen == 200)
             {
                 using (var client = new WebClient())
                 {
-                    await client.DownloadFileTaskAsync(orpad_linkarchive, folderprogramm);
+                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownComp);
+                    client.DownloadProgressChanged += ProgressPanel;
+                    await client.DownloadFileTaskAsync(orpad_linkarchive, folderprogramm + "Orpad" + "\\" + "Orpad.exe");
                 }
+                File.WriteAllText(folderprogramm + "Orpad" + "\\" + "Orpad.d", orpad_lastversion);
             }
-            if (adv == 201)
+            if (screen == 201)
             {
                 using (var client = new WebClient())
                 {
-                    await client.DownloadFileTaskAsync(whattomount_linkarchive, folderprogramm);
+                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownComp);
+                    client.DownloadProgressChanged += ProgressPanel;
+                    await client.DownloadFileTaskAsync(whattomount_linkarchive, folderprogramm + "Cache" + "\\" + "WhatToMount.zip");
                 }
+                File.WriteAllText(folderprogramm + "WhatToMount" + "\\" + "WhatToMount.d", whattomount_lastversion);
             }
             
         } //Загрузка
+
+        public void DownComp(object sender, AsyncCompletedEventArgs e)
+        {
+            MainProgressBar.Value = 0;
+            ButtonDownload.IsEnabled = true;
+            Mainpage.IsEnabled = true;
+            Graypage.IsEnabled = true;
+            Baetheexpage.IsEnabled = true;
+            FLinepage.IsEnabled = true;
+            Orpadpage.IsEnabled = true;
+            WhatToMountpage.IsEnabled = true;
+            PageOptions();
+            ScreenSwith();
+        }
+        public void ProgressPanel(object sender, DownloadProgressChangedEventArgs e)
+        {
+            var currentBytes = (int)e.TotalBytesToReceive;
+            var allBytes = (int)e.BytesReceived;
+            var downvelue = allBytes / 1024 + "/" + currentBytes / 1024;
+            var maxdown = currentBytes / 100;
+            var value = allBytes / 100;
+            MainProgressBar.Value = value;
+            MainProgressBar.Maximum = maxdown;
+        } // для прогресс бара загрузки 
 
         #region проверка архиватора и его загрузка
         public void CheckArchiver()
@@ -158,7 +219,7 @@ namespace Orbit_Launcher
             }
         } // загрузка архиватора
 
-        public void DCArchiver( object sender, AsyncCompletedEventArgs e)
+        public void DCArchiver(object sender, AsyncCompletedEventArgs e)
         {
             adv += 1;
             ArchiverText.Text = adv + "/2";
@@ -179,7 +240,7 @@ namespace Orbit_Launcher
             var value = allBytes / 100;
             ArchiverProgessbar.Value = value;
             ArchiverProgessbar.Maximum = maxdown;
-        } // для прогресс бара загрузки блокнота
+        } // для прогресс бара загрузки 
 
         #endregion
 
@@ -316,12 +377,13 @@ namespace Orbit_Launcher
                 var gray_arroy = gray_string.Split('\n');
                 gray_linkarchive = "https://getfile.dokpub.com/yandex/get/" + gray_arroy[0];
                 gray_versiononline = "Последняя версия: " + gray_arroy[1];
+                gray_lastversion = gray_arroy[1];
             }
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "OrbitinSpace" + "\\" + "Gray" + "\\" + "Gray.d") == true)
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray.d") == true)
             {
-                gray_versionoffline = "Установленная версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "OrbitinSpace" + "\\" + "Gray" + "\\" + "Gray.d");
+                gray_versionoffline = "Установленная версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray.d");
             }
-            else if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "OrbitinSpace" + "\\" + "Gray" + "\\" + "Gray.d") == false)
+            else if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray.d") == false)
             {
                 gray_versionoffline = "Файл с версией не найден";
             }
@@ -334,12 +396,13 @@ namespace Orbit_Launcher
                 var baetheex_arroy = baetheex_string.Split('\n');
                 baetheex_linkarchive = "https://getfile.dokpub.com/yandex/get/" + baetheex_arroy[0];
                 baetheex_versiononline = "Последняя версия: " + baetheex_arroy[1];
+                baetheex_lastversion = baetheex_arroy[1];
             }
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "OrbitinSpace" + "\\" + "Baetheex" + "\\" + "Baetheex.d") == true)
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Baetheex" + "\\" + "Baetheex.d") == true)
             {
-                baetheex_versionoffline = "Установленная версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "OrbitinSpace" + "\\" + "Baetheex" + "\\" + "Baetheex.d");
+                baetheex_versionoffline = "Установленная версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Baetheex" + "\\" + "Baetheex.d");
             }
-            else if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "OrbitinSpace" + "\\" + "Baetheex" + "\\" + "Baetheex.d") == false)
+            else if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Baetheex" + "\\" + "Baetheex.d") == false)
             {
                 baetheex_versionoffline = "Файл с версией не найден";
             }
@@ -352,12 +415,13 @@ namespace Orbit_Launcher
                 var fline_arroy = fline_string.Split('\n');
                 fline_linkarchive = "https://getfile.dokpub.com/yandex/get/" + fline_arroy[0];
                 fline_versiononline = "Последняя версия: " + fline_arroy[1];
+                fline_lastversion = fline_arroy[1];
             }
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "OrbitinSpace" + "\\" + "FLine" + "\\" + "FLine.d") == true)
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "FLine" + "\\" + "FLine.d") == true)
             {
-                fline_versionoffline = "Установленная версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "OrbitinSpace" + "\\" + "FLine" + "\\" + "FLine.d");
+                fline_versionoffline = "Установленная версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "FLine" + "\\" + "FLine.d");
             }
-            else if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "OrbitinSpace" + "\\" + "FLine" + "\\" + "FLine.d") == false)
+            else if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "FLine" + "\\" + "FLine.d") == false)
             {
                 fline_versionoffline = "Файл с версией не найден";
             }
@@ -370,12 +434,13 @@ namespace Orbit_Launcher
                 var orpad_arroy = orpad_string.Split('\n');
                 orpad_linkarchive = orpad_arroy[0];
                 orpad_versiononline = "Последняя версия: " + orpad_arroy[1];
+                orpad_lastversion = orpad_arroy[1];
             }
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "orpad.d") == true)
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "orpad.d") == true)
             {
-                orpad_versionoffline = "Установленная версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "FLine.d");
+                orpad_versionoffline = "Установленная версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.d");
             }
-            else if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "orpad.d") == false)
+            else if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "orpad.d") == false)
             {
                 orpad_versionoffline = "Файл с версией не найден";
             }
@@ -388,10 +453,11 @@ namespace Orbit_Launcher
                 var whattomount_arroy = whattomount_string.Split('\n');
                 whattomount_linkarchive = whattomount_arroy[0];
                 whattomount_versiononline = "Последняя версия: " + whattomount_arroy[1];
+                whattomount_lastversion = whattomount_arroy[1];
             }
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "WhatToMount" + "\\" + "WhatToMount.d") == true)
             {
-                whattomount_versionoffline = "Установленная версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "OrbitinSpace" + "\\" + "WhatToMount" + "\\" + "WhatToMount.d");
+                whattomount_versionoffline = "Установленная версия: " + File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "WhatToMount" + "\\" + "WhatToMount.d");
             }
             else if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "WhatToMount" + "\\" + "WhatToMount.d") == false)
             {
