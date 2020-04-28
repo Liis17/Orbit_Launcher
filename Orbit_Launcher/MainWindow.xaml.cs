@@ -92,18 +92,11 @@ namespace Orbit_Launcher
             CheckArchiver();
             ScreenSwith();
             PageOptions();
+            ButtonStart.IsEnabled = false;
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            ButtonDownload.IsEnabled = false;
-            Mainpage.IsEnabled = false;
-            Graypage.IsEnabled = false;
-            Baetheexpage.IsEnabled = false;
-            FLinepage.IsEnabled = false;
-            Orpadpage.IsEnabled = false;
-            WhatToMountpage.IsEnabled = false;
-
             var foldergame = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\";
             var folderprogramm = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\";
             if (screen == 0)
@@ -112,11 +105,20 @@ namespace Orbit_Launcher
             }
             if (screen == 100)
             {
+                ButtonDownload.IsEnabled = false;
+                Mainpage.IsEnabled = false;
+                Graypage.IsEnabled = false;
+                Baetheexpage.IsEnabled = false;
+                FLinepage.IsEnabled = false;
+                Orpadpage.IsEnabled = false;
+                WhatToMountpage.IsEnabled = false;
+
                 using (var client = new WebClient())
                 {
                     client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownComp);
                     client.DownloadProgressChanged += ProgressPanel;
-                    await client.DownloadFileTaskAsync(gray_linkarchive, foldergame + "DownloadCache" + "\\" + "GrayRelease.zip");
+                    await client.DownloadFileTaskAsync(gray_linkarchive, foldergame + "Cache" + "\\" + "GrayRelease.zip");
+                    //await client.DownloadFileTaskAsync("https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/unpackinggray.cmd", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "GrayRelease.zip");
                 }
                 File.WriteAllText(foldergame + "Gray" + "\\" + "Gray.d", gray_lastversion);
             }
@@ -130,6 +132,14 @@ namespace Orbit_Launcher
             }
             if (screen == 200)
             {
+                ButtonDownload.IsEnabled = false;
+                Mainpage.IsEnabled = false;
+                Graypage.IsEnabled = false;
+                Baetheexpage.IsEnabled = false;
+                FLinepage.IsEnabled = false;
+                Orpadpage.IsEnabled = false;
+                WhatToMountpage.IsEnabled = false;
+
                 using (var client = new WebClient())
                 {
                     client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownComp);
@@ -140,6 +150,14 @@ namespace Orbit_Launcher
             }
             if (screen == 201)
             {
+                ButtonDownload.IsEnabled = false;
+                Mainpage.IsEnabled = false;
+                Graypage.IsEnabled = false;
+                Baetheexpage.IsEnabled = false;
+                FLinepage.IsEnabled = false;
+                Orpadpage.IsEnabled = false;
+                WhatToMountpage.IsEnabled = false;
+
                 using (var client = new WebClient())
                 {
                     client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownComp);
@@ -151,7 +169,7 @@ namespace Orbit_Launcher
             
         } //Загрузка
 
-        public void DownComp(object sender, AsyncCompletedEventArgs e)
+        public async void DownComp(object sender, AsyncCompletedEventArgs e)
         {
             MainProgressBar.Value = 0;
             ButtonDownload.IsEnabled = true;
@@ -163,6 +181,32 @@ namespace Orbit_Launcher
             WhatToMountpage.IsEnabled = true;
             PageOptions();
             ScreenSwith();
+
+
+            if (screen == 100)
+            {
+                using (var client = new WebClient())
+                {
+                    await client.DownloadFileTaskAsync("https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/unpackinggray.cmd", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackinggray.cmd");
+                }
+
+                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackinggray.cmd");
+                ButtonStart.IsEnabled = true;
+            }
+            if (screen == 200)
+            {
+                ButtonStart.IsEnabled = true;
+            }
+            if (screen == 201)
+            {
+                using (var client = new WebClient())
+                {
+                    await client.DownloadFileTaskAsync("https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/unpackingwhattomount.cmd", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackingwhattomount.cmd");
+                }
+
+                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackingwhattomount.cmd");
+                ButtonStart.IsEnabled = true;
+            }
         }
         public void ProgressPanel(object sender, DownloadProgressChangedEventArgs e)
         {
@@ -178,8 +222,8 @@ namespace Orbit_Launcher
         #region проверка архиватора и его загрузка
         public void CheckArchiver()
         {
-            string Archiverexe = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher" + "\\" + "7z.exe";
-            string Archiverdll = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher" + "\\" + "7z.dll";
+            string Archiverexe = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "7z.exe";
+            string Archiverdll = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "7z.dll";
             if (File.Exists(Archiverexe) == false || File.Exists(Archiverdll) == false)
             {
                 MessageBox.Show("Отсутствует архиватор", "Проблема с запуском");
@@ -206,8 +250,8 @@ namespace Orbit_Launcher
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(DCArchiver);
                 client.DownloadProgressChanged += DPArchiver;
 
-                var path1 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher" + "\\" + "7z.exe";
-                var path2 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher" + "\\" + "7z.dll";
+                var path1 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "7z.exe";
+                var path2 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "7z.dll";
 
                 var link1 = "https://github.com/Liis17/Inspiration/releases/download/7z/7z.exe";
                 var link2 = "https://github.com/Liis17/Inspiration/releases/download/7z/7z.dll";
@@ -298,6 +342,7 @@ namespace Orbit_Launcher
                 description.Text = "Orbit Launcher" + "\n" + "Средство загрузки продуктов Orbit is Space";
                 versiononline.Text = "Нажмите на любую";
                 versionoffline.Text = "икоку справа";
+                ButtonStart.IsEnabled = false;
             }
 
             #endregion 
@@ -310,6 +355,11 @@ namespace Orbit_Launcher
                 description.Text = gray_description;
                 versiononline.Text = gray_versiononline;
                 versionoffline.Text = gray_versionoffline;
+                ButtonStart.IsEnabled = false;
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray.exe") == true)
+                {
+                    ButtonStart.IsEnabled = true;
+                }
             }
             if (screen == 101)
             {
@@ -317,6 +367,7 @@ namespace Orbit_Launcher
                 description.Text = baetheex_description;
                 versiononline.Text = baetheex_versiononline;
                 versionoffline.Text = baetheex_versionoffline;
+                ButtonStart.IsEnabled = false;
             }
             if (screen == 102)
             {
@@ -324,6 +375,7 @@ namespace Orbit_Launcher
                 description.Text = fline_description;
                 versiononline.Text = fline_versiononline;
                 versionoffline.Text = fline_versionoffline;
+                ButtonStart.IsEnabled = false;
             }
 
             #endregion
@@ -336,6 +388,11 @@ namespace Orbit_Launcher
                 description.Text = orpad_description;
                 versiononline.Text = orpad_versiononline;
                 versionoffline.Text = orpad_versionoffline;
+                ButtonStart.IsEnabled = false;
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.exe") == true)
+                {
+                    ButtonStart.IsEnabled = true;
+                }
             }
             if (screen == 201)
             {
@@ -343,6 +400,11 @@ namespace Orbit_Launcher
                 description.Text = whattomount_description;
                 versiononline.Text = whattomount_versiononline;
                 versionoffline.Text = whattomount_versionoffline;
+                ButtonStart.IsEnabled = false;
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "WhatToMount" + "\\" + "WhatToMount.exe") == true)
+                {
+                    ButtonStart.IsEnabled = true;
+                }
             }
 
             #endregion 
@@ -467,5 +529,20 @@ namespace Orbit_Launcher
 
         } //установка значений на переменые
 
+        private void ButtonStart_Click(object sender, RoutedEventArgs e)
+        {
+            if (screen == 100)
+            {
+                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray.exe");
+            }
+            if (screen == 200)
+            {
+                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.exe");
+            }
+            if (screen == 201)
+            {
+                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "WhatToMount" + "\\" + "WhatToMount.exe");
+            }
+        }
     }
 }
