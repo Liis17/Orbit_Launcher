@@ -49,7 +49,7 @@ namespace Orbit_Launcher
             string Archiverdll = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher" + "\\" + "7z.dll";
             if (File.Exists(Archiverexe) == false || File.Exists(Archiverdll) == false)
             {
-                MessageBox.Show("Отсутствует архиватор" + "\n" +"Cейчас будет запущен загрузчик файлов", "Автоматическое устранение проблемы");
+                //MessageBox.Show("Отсутствует архиватор" + "\n" +"Cейчас будет запущен загрузчик файлов", "Автоматическое устранение проблемы");
                 nfa = true;
                 if (nfa == true)
                 {
