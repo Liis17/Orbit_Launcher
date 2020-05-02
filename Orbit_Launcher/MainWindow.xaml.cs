@@ -316,7 +316,7 @@ namespace Orbit_Launcher
             if (screen == 0)
             {
                 namebox.Text = "Главная";
-                descriptiontext.Text = "Orbit Launcher" + "\n" + "Средство загрузки продуктов Orbit is Space";
+                descriptiontext.Text = "Orbit Launcher" + "\n" + "Средство загрузки продуктов Orbit in Space";
                 versiononlinetext.Text = "Нажмите на любую";
                 versionofflinetext.Text = "икоку справа";
                 buttonstart.IsEnabled = false;
@@ -545,5 +545,25 @@ namespace Orbit_Launcher
                 
             }
         } // кнопка "Запустить"
+
+        private void Donate(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://www.paypal.me/liis17");
+        }
+
+        private void OpenContacts(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://ww3.orbitinspace.site/main/Contacts");
+        }
+
+        private void OpenDialog(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://durov.cc/Li_is");
+        }
+
+        private void OpenMainFolder(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\");
+        }
     }
 }
