@@ -6,14 +6,8 @@ using System.Threading.Tasks;
 
 namespace Orbit_Launcher
 {
-    class CheckArchiver
+    class ProgramInstallation
     {
-
-
-
-
-
-
 
 
 

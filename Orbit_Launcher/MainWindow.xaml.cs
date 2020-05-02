@@ -26,62 +26,69 @@ namespace Orbit_Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        public int screen; // для работы смены экранов
+        public static int screen; // для работы смены экранов
         
         public static int adv = 0;
 
         #region ссылки на обьекты интерфейса
-        public static object archivertext; // текст панель с выводом сачаных элементов (0/2)
-        public static object archiverprogessbarvalue; // прогресс бар загрузки архиватора (значение)
-        public static object archiverprogessbarmax; // прогресс бар загрузки архиватора (максимум)
+        public static TextBlock archivertext; // текст панель с выводом сачаных элементов (0/2)
+        public static ProgressBar archiverprogessbar; // прогресс бар загрузки архиватора 
+        public static Grid firstgrid; // главный грит в лаунчере с интерфейсом 
+        public static Grid archiverdowngrid; // грид с интерфейсом загрузки архиватора 
+        public static Grid linkupdate; // грид с интерфейсом обновления ссылок
+        public static TextBlock namebox; // панель текста с название страницы в верхнем левом углу
+        public static TextBlock descriptiontext; // текст панель с описанием страницы
+        public static TextBlock versiononlinetext; // текст панель с версией в сети
+        public static TextBlock versionofflinetext; // текст панель с версией на пк
+        public static Button buttonstart; // кнопка "запустить"
 
 
         #endregion
 
         #region параметры для страниц
-        public string gray_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/Gray.d"; //ссылка на ссылку с архивом
-        public string gray_linkarchive; // ссылка на скачивание архива;
-        public string gray_versiononline; // версия в сети
-        public string gray_versionoffline; // версия на устройстве
-        public string gray_description = "Тестовый проект созданый для тестирования различных штук для других проектов"; // описание
+        public static string gray_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/Gray.d"; //ссылка на ссылку с архивом
+        public static string gray_linkarchive; // ссылка на скачивание архива;
+        public static string gray_versiononline; // версия в сети
+        public static string gray_versionoffline; // версия на устройстве
+        public static string gray_description = "Тестовый проект созданый для тестирования различных штук для других проектов"; // описание
 
-        public string gray_lastversion;
-
-
-        public string baetheex_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/Baetheex.d"; //ссылка на ссылку с архивом
-        public string baetheex_linkarchive; // ссылка на скачивание архива;
-        public string baetheex_versiononline; // версия в сети
-        public string baetheex_versionoffline; // версия на устройстве
-        public string baetheex_description = "Замороженный проект, его загрузка нереконемдуется. В скором времени если у меня появится делание я сделаю его ремастер"; // описание
-
-        public string baetheex_lastversion;
+        public static string gray_lastversion;
 
 
-        public string fline_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/FLine.d"; //ссылка на ссылку с архивом
-        public string fline_linkarchive; // ссылка на скачивание архива;
-        public string fline_versiononline; // версия в сети
-        public string fline_versionoffline; // версия на устройстве
-        public string fline_description = "Замороженный проект, рабочих сборок которого больше нет. В будующем возможен ремастер"; // описание
+        public static string baetheex_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/Baetheex.d"; //ссылка на ссылку с архивом
+        public static string baetheex_linkarchive; // ссылка на скачивание архива;
+        public static string baetheex_versiononline; // версия в сети
+        public static string baetheex_versionoffline; // версия на устройстве
+        public static string baetheex_description = "Замороженный проект, его загрузка нереконемдуется. В скором времени если у меня появится делание я сделаю его ремастер"; // описание
 
-        public string fline_lastversion;
-
-
-        public string orpad_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/Orpad.d"; //ссылка на ссылку с архивом
-        public string orpad_linkarchive; // ссылка на скачивание архива;
-        public string orpad_versiononline; // версия в сети
-        public string orpad_versionoffline; // версия на устройстве
-        public string orpad_description = "Блокнот, просто блокнот, больше нечего о нем сказать"; // описание
-
-        public string orpad_lastversion;
+        public static string baetheex_lastversion;
 
 
-        public string whattomount_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/WhatToMount.d"; //ссылка на ссылку с архивом
-        public string whattomount_linkarchive; // ссылка на скачивание архива;
-        public string whattomount_versiononline; // версия в сети
-        public string whattomount_versionoffline; // версия на устройстве
-        public string whattomount_description = "Эта программа выдает случайную строку из файла, вот зачем эта программа вам тут нужна я не знаю"; // описание
+        public static string fline_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/FLine.d"; //ссылка на ссылку с архивом
+        public static string fline_linkarchive; // ссылка на скачивание архива;
+        public static string fline_versiononline; // версия в сети
+        public static string fline_versionoffline; // версия на устройстве
+        public static string fline_description = "Замороженный проект, рабочих сборок которого больше нет. В будующем возможен ремастер"; // описание
 
-        public string whattomount_lastversion;
+        public static string fline_lastversion;
+
+
+        public static string orpad_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/Orpad.d"; //ссылка на ссылку с архивом
+        public static string orpad_linkarchive; // ссылка на скачивание архива;
+        public static string orpad_versiononline; // версия в сети
+        public static string orpad_versionoffline; // версия на устройстве
+        public static string orpad_description = "Блокнот, просто блокнот, больше нечего о нем сказать"; // описание
+
+        public static string orpad_lastversion;
+
+
+        public static string whattomount_link = "https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/WhatToMount.d"; //ссылка на ссылку с архивом
+        public static string whattomount_linkarchive; // ссылка на скачивание архива;
+        public static string whattomount_versiononline; // версия в сети
+        public static string whattomount_versionoffline; // версия на устройстве
+        public static string whattomount_description = "Эта программа выдает случайную строку из файла, вот зачем эта программа вам тут нужна я не знаю"; // описание
+
+        public static string whattomount_lastversion;
 
 
         #endregion
@@ -91,21 +98,28 @@ namespace Orbit_Launcher
             Startup.DirectoryCreate();
             screen = 0;
             InitializeComponent();
-            
-            ScreenSwith();
-            PageOptions();
-            ButtonStart.IsEnabled = false;
-
             #region установка обьектов интерфейса в статические переменые
 
-            archivertext = ArchiverText.Text;
+            archivertext = ArchiverText;
 
-            archiverprogessbarvalue = ArchiverProgessbar.Value;
-            archiverprogessbarmax = ArchiverProgessbar.Maximum;
+            archiverprogessbar = ArchiverProgessbar;
+            archiverprogessbar = ArchiverProgessbar;
 
+            firstgrid = FirstGrid;
+            archiverdowngrid = ArchiverdownGrid;
 
+            linkupdate = LinkUpdate;
 
+            namebox = Namebox;
+
+            buttonstart = ButtonStart;
+
+            descriptiontext = description;
+            versiononlinetext = versiononline;
+            versionofflinetext = versionoffline;
             #endregion
+
+            buttonstart.IsEnabled = false;
 
             Startup.CheckArchiver();
         }
@@ -114,15 +128,31 @@ namespace Orbit_Launcher
 
         public static void EnableBootScreen()
         {
-            FirstGrid.Visibility = Visibility.Hidden;
-            ArchiverdownGrid.Visibility = Visibility.Visible;
+            firstgrid.Visibility = Visibility.Hidden;
+            archiverdowngrid.Visibility = Visibility.Visible;
+            linkupdate.Visibility = Visibility.Hidden;
         } // включение экрана загрузки архиватора
 
         public static void ShutdownBootScreen()
         {
-            FirstGrid.Visibility = Visibility.Visible;
-            ArchiverdownGrid.Visibility = Visibility.Hidden;
+            firstgrid.Visibility = Visibility.Visible;
+            archiverdowngrid.Visibility = Visibility.Hidden;
+            linkupdate.Visibility = Visibility.Hidden;
         } // выключение экрана загрузки архиватора
+
+        public static void EnableLinkUpdateScreen()
+        {
+            firstgrid.Visibility = Visibility.Hidden;
+            archiverdowngrid.Visibility = Visibility.Hidden;
+            linkupdate.Visibility = Visibility.Visible;
+        } // включение экрана обновления ссылок
+
+        public static void ShutdownLinkUpdateScreen()
+        {
+            firstgrid.Visibility = Visibility.Visible;
+            archiverdowngrid.Visibility = Visibility.Hidden;
+            linkupdate.Visibility = Visibility.Hidden;
+        } // выключение экрана обновления ссылок
 
         #endregion
 
@@ -152,7 +182,7 @@ namespace Orbit_Launcher
                     await client.DownloadFileTaskAsync(gray_linkarchive, foldergame + "Cache" + "\\" + "GrayRelease.zip");
                     //await client.DownloadFileTaskAsync("https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/unpackinggray.cmd", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "GrayRelease.zip");
                 }
-                File.WriteAllText(foldergame + "Gray" + "\\" + "Gray.d", gray_lastversion);
+                File.WriteAllText(foldergame + "Cache" + "\\" + "Graylast.d", gray_lastversion);
             }
             if (screen == 101)
             {
@@ -178,7 +208,7 @@ namespace Orbit_Launcher
                     client.DownloadProgressChanged += ProgressPanel;
                     await client.DownloadFileTaskAsync(orpad_linkarchive, folderprogramm + "Orpad" + "\\" + "Orpad.exe");
                 }
-                File.WriteAllText(folderprogramm + "Orpad" + "\\" + "Orpad.d", orpad_lastversion);
+                File.WriteAllText(folderprogramm + "Cache" + "\\" + "Orpadlast.d", orpad_lastversion);
             }
             if (screen == 201)
             {
@@ -196,7 +226,7 @@ namespace Orbit_Launcher
                     client.DownloadProgressChanged += ProgressPanel;
                     await client.DownloadFileTaskAsync(whattomount_linkarchive, folderprogramm + "Cache" + "\\" + "WhatToMount.zip");
                 }
-                File.WriteAllText(folderprogramm + "WhatToMount" + "\\" + "WhatToMount.d", whattomount_lastversion);
+                File.WriteAllText(folderprogramm + "Cache" + "\\" + "WhatToMountlast.d", whattomount_lastversion);
             }
             
         } //Загрузка
@@ -222,7 +252,7 @@ namespace Orbit_Launcher
                     await client.DownloadFileTaskAsync("https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/unpackinggray.cmd", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackinggray.cmd");
                 }
 
-                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackinggray.cmd");
+                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher_Service.exe", "-gray");
                 ButtonStart.IsEnabled = true;
             }
             if (screen == 200)
@@ -236,10 +266,11 @@ namespace Orbit_Launcher
                     await client.DownloadFileTaskAsync("https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/unpackingwhattomount.cmd", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackingwhattomount.cmd");
                 }
 
-                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackingwhattomount.cmd");
+                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher_Service.exe", "-whattomount");
                 ButtonStart.IsEnabled = true;
             }
         }
+
         public void ProgressPanel(object sender, DownloadProgressChangedEventArgs e)
         {
             var currentBytes = (int)e.TotalBytesToReceive;
@@ -295,17 +326,17 @@ namespace Orbit_Launcher
         } // нажание на кнопку "WhatToMount"
         #endregion
 
-        public void ScreenSwith()
+        public static void ScreenSwith()
         {
             #region главный экран
 
             if (screen == 0)
             {
-                Namebox.Text = "Главная";
-                description.Text = "Orbit Launcher" + "\n" + "Средство загрузки продуктов Orbit is Space";
-                versiononline.Text = "Нажмите на любую";
-                versionoffline.Text = "икоку справа";
-                ButtonStart.IsEnabled = false;
+                namebox.Text = "Главная";
+                descriptiontext.Text = "Orbit Launcher" + "\n" + "Средство загрузки продуктов Orbit is Space";
+                versiononlinetext.Text = "Нажмите на любую";
+                versionofflinetext.Text = "икоку справа";
+                buttonstart.IsEnabled = false;
             }
 
             #endregion 
@@ -314,31 +345,31 @@ namespace Orbit_Launcher
 
             if (screen == 100)
             {
-                Namebox.Text = "Gray";
-                description.Text = gray_description;
-                versiononline.Text = gray_versiononline;
-                versionoffline.Text = gray_versionoffline;
-                ButtonStart.IsEnabled = false;
+                namebox.Text = "Gray";
+                descriptiontext.Text = gray_description;
+                versiononlinetext.Text = gray_versiononline;
+                versionofflinetext.Text = gray_versionoffline;
+                buttonstart.IsEnabled = false;
                 if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray.exe") == true)
                 {
-                    ButtonStart.IsEnabled = true;
+                    buttonstart.IsEnabled = true;
                 }
             }
             if (screen == 101)
             {
-                Namebox.Text = "Baetheex";
-                description.Text = baetheex_description;
-                versiononline.Text = baetheex_versiononline;
-                versionoffline.Text = baetheex_versionoffline;
-                ButtonStart.IsEnabled = false;
+                namebox.Text = "Baetheex";
+                descriptiontext.Text = baetheex_description;
+                versiononlinetext.Text = baetheex_versiononline;
+                versionofflinetext.Text = baetheex_versionoffline;
+                buttonstart.IsEnabled = false;
             }
             if (screen == 102)
             {
-                Namebox.Text = "FLine";
-                description.Text = fline_description;
-                versiononline.Text = fline_versiononline;
-                versionoffline.Text = fline_versionoffline;
-                ButtonStart.IsEnabled = false;
+                namebox.Text = "FLine";
+                descriptiontext.Text = fline_description;
+                versiononlinetext.Text = fline_versiononline;
+                versionofflinetext.Text = fline_versionoffline;
+                buttonstart.IsEnabled = false;
             }
 
             #endregion
@@ -347,36 +378,36 @@ namespace Orbit_Launcher
 
             if (screen == 200)
             {
-                Namebox.Text = "Orpad";
-                description.Text = orpad_description;
-                versiononline.Text = orpad_versiononline;
-                versionoffline.Text = orpad_versionoffline;
-                ButtonStart.IsEnabled = false;
+                namebox.Text = "Orpad";
+                descriptiontext.Text = orpad_description;
+                versiononlinetext.Text = orpad_versiononline;
+                versionofflinetext.Text = orpad_versionoffline;
+                buttonstart.IsEnabled = false;
                 if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.exe") == true)
                 {
-                    ButtonStart.IsEnabled = true;
+                    buttonstart.IsEnabled = true;
                 }
             }
             if (screen == 201)
             {
-                Namebox.Text = "WhatToMount";
-                description.Text = whattomount_description;
-                versiononline.Text = whattomount_versiononline;
-                versionoffline.Text = whattomount_versionoffline;
-                ButtonStart.IsEnabled = false;
+                namebox.Text = "WhatToMount";
+                descriptiontext.Text = whattomount_description;
+                versiononlinetext.Text = whattomount_versiononline;
+                versionofflinetext.Text = whattomount_versionoffline;
+                buttonstart.IsEnabled = false;
                 if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "WhatToMount" + "\\" + "WhatToMount.exe") == true)
                 {
-                    ButtonStart.IsEnabled = true;
+                    buttonstart.IsEnabled = true;
                 }
             }
 
             #endregion 
-        }
+        } //установка значений с переменых на интерефейс
         #endregion
 
-        public async void PageOptions()
+        public static async void PageOptions()
         {
-
+            EnableLinkUpdateScreen();
             var folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher" + "\\" + "Link" + "\\";
             if (File.Exists(folder) == false)
             {
@@ -490,21 +521,45 @@ namespace Orbit_Launcher
             }
             #endregion
 
+            ScreenSwith();
+            ShutdownLinkUpdateScreen();
         } //установка значений на переменые
 
         private void ButtonStart_Click(object sender, RoutedEventArgs e)
         {
             if (screen == 100)
             {
-                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray.exe");
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray.exe") == true)
+                {
+                    Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Gray" + "\\" + "Gray.exe");
+                }
+                else
+                {
+                    MessageBox.Show("Во время установки произошла ошибка", "Что-то не так");
+                }
             }
             if (screen == 200)
             {
-                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.exe");
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.exe") == true)
+                {
+                    Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orpad" + "\\" + "Orpad.exe");
+                }
+                else
+                {
+                    MessageBox.Show("Во время установки произошла ошибка", "Что-то не так");
+                }
             }
             if (screen == 201)
             {
-                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "WhatToMount" + "\\" + "WhatToMount.exe");
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "WhatToMount" + "\\" + "WhatToMount.exe") == true)
+                {
+                    Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "WhatToMount" + "\\" + "WhatToMount.exe");
+                }
+                else
+                {
+                    MessageBox.Show("Во время установки произошла ошибка","Что-то не так");
+                }
+                
             }
         }
     }

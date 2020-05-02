@@ -30,10 +30,10 @@ namespace Orbit_Launcher
         {
             string Archiverexe = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "7z.exe";
             string Archiverdll = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "7z.dll";
-            if (File.Exists(Archiverexe) == false || File.Exists(Archiverdll) == false)
+            string Archiverser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher_Service.exe";
+            if (File.Exists(Archiverexe) == false || File.Exists(Archiverdll) == false || File.Exists(Archiverser) == false)
             {
-                MessageBox.Show("Отсутствует архиватор", "Проблема с запуском");
-                MessageBox.Show("Приготовьтесь, сейчас будет запущен загрузчик файлов", "Автоматическое устранение проблемы");
+                MessageBox.Show("Отсутствует архиватор" + "\n" +"Cейчас будет запущен загрузчик файлов", "Автоматическое устранение проблемы");
                 nfa = true;
                 if (nfa == true)
                 {
@@ -41,6 +41,12 @@ namespace Orbit_Launcher
                     MainWindow.EnableBootScreen();
                 }
             }
+            else if (File.Exists(Archiverexe) == true && File.Exists(Archiverdll) == true && File.Exists(Archiverser) == true)
+            {
+                MainWindow.ScreenSwith();
+                MainWindow.PageOptions();
+            }
+
         } // проверка на наличие архиватора
 
         public static async void DownloadArchver()
@@ -52,22 +58,35 @@ namespace Orbit_Launcher
 
                 var path1 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "7z.exe";
                 var path2 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "7z.dll";
+                var path3 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher_Service.exe";
 
                 var link1 = "https://github.com/Liis17/Inspiration/releases/download/7z/7z.exe";
                 var link2 = "https://github.com/Liis17/Inspiration/releases/download/7z/7z.dll";
+                var link3 = "https://github.com/Liis17/Orbit_Launcher/releases/download/launch2.1/Orbit_Launcher_Service.exe";
 
                 await client.DownloadFileTaskAsync(link1, path1);
+                await client.DownloadFileTaskAsync(link3, path3);
                 await client.DownloadFileTaskAsync(link2, path2);
 
-                MessageBox.Show("Файлы загружены, программа готова к работе", "Готово!");
+
+                //MessageBox.Show("Файлы загружены, программа готова к работе", "Готово!");
+
+                string Archiverexe = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "7z.exe";
+                string Archiverdll = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "7z.dll";
+                string Archiverser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher_Service.exe";
+                if (File.Exists(Archiverexe) == true || File.Exists(Archiverdll) == true || File.Exists(Archiverser) == true)
+                {
+                    MainWindow.ScreenSwith();
+                    MainWindow.PageOptions();
+                }
             }
         } // загрузка архиватора
 
         public static void DCArchiver(object sender, AsyncCompletedEventArgs e)
         {
             MainWindow.adv += 1;
-            MainWindow.archivertext = MainWindow.adv + "/2";
-            if (MainWindow.adv == 2)
+            MainWindow.archivertext.Text = MainWindow.adv + "/3";
+            if (MainWindow.adv == 3)
             {
                 nfa = false;
                 MainWindow.ShutdownBootScreen();
@@ -81,8 +100,8 @@ namespace Orbit_Launcher
             var downvelue = allBytes / 1024 + "/" + currentBytes / 1024;
             var maxdown = currentBytes / 100;
             var value = allBytes / 100;
-            MainWindow.archiverprogessbarvalue = value;
-            MainWindow.archiverprogessbarmax = maxdown;
+            MainWindow.archiverprogessbar.Value = value;
+            MainWindow.archiverprogessbar.Maximum = maxdown;
         } // для прогресс бара загрузки 
 
     }
