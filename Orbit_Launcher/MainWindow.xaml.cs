@@ -44,6 +44,15 @@ namespace Orbit_Launcher
 
         public static TextBlock symboltext; // символ "
 
+        public static Button buttondownload;
+        public static Button mainpage;
+        public static Button graypage;
+        public static Button baetheexpage;
+        public static Button flinepage;
+        public static Button orpadpage;
+        public static Button whattomountpage;
+        public static ProgressBar mainprogressbar;
+
 
         #endregion
 
@@ -119,6 +128,15 @@ namespace Orbit_Launcher
             descriptiontext = description;
             versiononlinetext = versiononline;
             versionofflinetext = versionoffline;
+
+            buttondownload = ButtonDownload;
+            mainpage = Mainpage;
+            graypage = Graypage;
+            baetheexpage = Baetheexpage;
+            flinepage = FLinepage;
+            orpadpage = Orpadpage;
+            whattomountpage = WhatToMountpage;
+            mainprogressbar = MainProgressBar;
             #endregion
             Startup.FileCreate();
             buttonstart.IsEnabled = false;
@@ -156,32 +174,32 @@ namespace Orbit_Launcher
             linkupdate.Visibility = Visibility.Hidden;
         } // выключение экрана обновления ссылок
 
-        public void DownloadStart()
+        public static void DownloadStart()
         {
-            ButtonDownload.IsEnabled = false;
-            Mainpage.IsEnabled = false;
-            Graypage.IsEnabled = false;
-            Baetheexpage.IsEnabled = false;
-            FLinepage.IsEnabled = false;
-            Orpadpage.IsEnabled = false;
-            WhatToMountpage.IsEnabled = false;
+            buttondownload.IsEnabled = false;
+            mainpage.IsEnabled = false;
+            graypage.IsEnabled = false;
+            baetheexpage.IsEnabled = false;
+            flinepage.IsEnabled = false;
+            orpadpage.IsEnabled = false;
+            whattomountpage.IsEnabled = false;
         }
 
-        public void DownloadStop()
+        public static void DownloadStop()
         {
-            MainProgressBar.Value = 0;
-            ButtonDownload.IsEnabled = true;
-            Mainpage.IsEnabled = true;
-            Graypage.IsEnabled = true;
-            Baetheexpage.IsEnabled = true;
-            FLinepage.IsEnabled = true;
-            Orpadpage.IsEnabled = true;
-            WhatToMountpage.IsEnabled = true;
+            mainprogressbar.Value = 0;
+            buttondownload.IsEnabled = true;
+            mainpage.IsEnabled = true;
+            graypage.IsEnabled = true;
+            baetheexpage.IsEnabled = true;
+            flinepage.IsEnabled = true;
+            orpadpage.IsEnabled = true;
+            whattomountpage.IsEnabled = true;
         }
 
         #endregion
 
-
+        #region методы для загрузки
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (screen == 0)
@@ -224,34 +242,35 @@ namespace Orbit_Launcher
             if (screen == 100)
             {
                 Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackinggray.cmd");
-                ButtonStart.IsEnabled = true;
+                buttonstart.IsEnabled = true;
             }
             if (screen == 200)
             {
-                ButtonStart.IsEnabled = true;
+                buttonstart.IsEnabled = true;
             }
             if (screen == 201)
             {
                 Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackingwhattomount.cmd");
-                ButtonStart.IsEnabled = true;
+                buttonstart.IsEnabled = true;
             }
         } //действие после загрузки
 
-        public void ProgressPanel(object sender, DownloadProgressChangedEventArgs e)
+        public static void ProgressPanel(object sender, DownloadProgressChangedEventArgs e)
         {
             var currentBytes = (int)e.TotalBytesToReceive;
             var allBytes = (int)e.BytesReceived;
             var downvelue = allBytes / 1024 + "/" + currentBytes / 1024;
             var maxdown = currentBytes / 100;
             var value = allBytes / 100;
-            MainProgressBar.Value = value;
-            MainProgressBar.Maximum = maxdown;
+            mainprogressbar.Value = value;
+            mainprogressbar.Maximum = maxdown;
         } // для прогресс бара загрузки 
 
         private void BaguetteScroll(object sender, MouseButtonEventArgs e)
         {
             Process.Start("https://ww3.orbitinspace.site/baguette");
         } // пасхалка с багетом
+        #endregion
 
         #region смена экранов
         #region нажатия на кнопки

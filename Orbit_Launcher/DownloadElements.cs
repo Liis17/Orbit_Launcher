@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -13,7 +14,11 @@ namespace Orbit_Launcher
         {
             using (var client = new WebClient())
             {
-                await client.DownloadFileTaskAsync(gray_link, folder_gray);
+                client.DownloadFileCompleted += new AsyncCompletedEventHandler(MainWindow.DownComp);
+                client.DownloadProgressChanged += MainWindow.ProgressPanel;
+                var link = "";
+                var path = "";
+                await client.DownloadFileTaskAsync(link, path);
             }
         }
 
@@ -21,7 +26,11 @@ namespace Orbit_Launcher
         {
             using (var client = new WebClient())
             {
-                await client.DownloadFileTaskAsync(gray_link, folder_gray);
+                client.DownloadFileCompleted += new AsyncCompletedEventHandler(MainWindow.DownComp);
+                client.DownloadProgressChanged += MainWindow.ProgressPanel;
+                var link = "";
+                var path = "";
+                await client.DownloadFileTaskAsync(link, path);
             }
         }
 
@@ -29,7 +38,11 @@ namespace Orbit_Launcher
         {
             using (var client = new WebClient())
             {
-                await client.DownloadFileTaskAsync(gray_link, folder_gray);
+                client.DownloadFileCompleted += new AsyncCompletedEventHandler(MainWindow.DownComp);
+                client.DownloadProgressChanged += MainWindow.ProgressPanel;
+                var link = "";
+                var path = "";
+                await client.DownloadFileTaskAsync(link, path);
             }
         }
 
