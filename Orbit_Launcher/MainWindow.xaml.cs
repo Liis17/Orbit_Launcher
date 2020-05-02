@@ -241,7 +241,6 @@ namespace Orbit_Launcher
 
             if (screen == 100)
             {
-                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackinggray.cmd");
                 buttonstart.IsEnabled = true;
             }
             if (screen == 200)
@@ -250,7 +249,6 @@ namespace Orbit_Launcher
             }
             if (screen == 201)
             {
-                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackingwhattomount.cmd");
                 buttonstart.IsEnabled = true;
             }
         } //действие после загрузки
@@ -520,7 +518,7 @@ namespace Orbit_Launcher
                 }
                 else
                 {
-                    MessageBox.Show("Во время установки произошла ошибка", "Что-то не так");
+                    MessageBox.Show("Во время установки произошла ошибка, удалите архив из папка Cache и попробуйте скачать занова", "Что-то не так");
                 }
             }
             if (screen == 200)
@@ -531,7 +529,7 @@ namespace Orbit_Launcher
                 }
                 else
                 {
-                    MessageBox.Show("Во время установки произошла ошибка", "Что-то не так");
+                    MessageBox.Show("Во время установки произошла ошибка, удалите архив из папка Cache и попробуйте скачать занова", "Что-то не так");
                 }
             }
             if (screen == 201)
@@ -542,10 +540,10 @@ namespace Orbit_Launcher
                 }
                 else
                 {
-                    MessageBox.Show("Во время установки произошла ошибка","Что-то не так");
+                    MessageBox.Show("Во время установки произошла ошибка, удалите архив из папка Cache и попробуйте скачать занова", "Что-то не так");
                 }
                 
             }
-        }
+        } // кнопка "Запустить"
     }
 }
