@@ -63,6 +63,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DownloadElements.cs" />
     <Compile Include="ProgramInstallation.cs" />
     <Compile Include="Startup.cs" />
     <Page Include="MainWindow.xaml">

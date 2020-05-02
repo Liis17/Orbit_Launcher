@@ -156,42 +156,42 @@ namespace Orbit_Launcher
             linkupdate.Visibility = Visibility.Hidden;
         } // выключение экрана обновления ссылок
 
+        public void DownloadStart()
+        {
+            ButtonDownload.IsEnabled = false;
+            Mainpage.IsEnabled = false;
+            Graypage.IsEnabled = false;
+            Baetheexpage.IsEnabled = false;
+            FLinepage.IsEnabled = false;
+            Orpadpage.IsEnabled = false;
+            WhatToMountpage.IsEnabled = false;
+        }
+
+        public void DownloadStop()
+        {
+            MainProgressBar.Value = 0;
+            ButtonDownload.IsEnabled = true;
+            Mainpage.IsEnabled = true;
+            Graypage.IsEnabled = true;
+            Baetheexpage.IsEnabled = true;
+            FLinepage.IsEnabled = true;
+            Orpadpage.IsEnabled = true;
+            WhatToMountpage.IsEnabled = true;
+        }
+
         #endregion
 
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var foldergame = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\";
-            var folderprogramm = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\";
             if (screen == 0)
             {
                 MessageBox.Show("Зачем, лаунчер же у тебя уже есть");
             }
             if (screen == 100)
             {
-                ButtonDownload.IsEnabled = false;
-                Mainpage.IsEnabled = false;
-                Graypage.IsEnabled = false;
-                Baetheexpage.IsEnabled = false;
-                FLinepage.IsEnabled = false;
-                Orpadpage.IsEnabled = false;
-                WhatToMountpage.IsEnabled = false;
-                if (File.Exists(foldergame + "Cache" + "\\" + "GrayRelease.zip") == false)
-                {
-                    using (var client = new WebClient())
-                    {
-                        client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownComp);
-                        client.DownloadProgressChanged += ProgressPanel;
-                        await client.DownloadFileTaskAsync(gray_linkarchive, foldergame + "Cache" + "\\" + "GrayRelease.zip");
-                        //await client.DownloadFileTaskAsync("https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/unpackinggray.cmd", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "GrayRelease.zip");
-                    }
-                    File.WriteAllText(foldergame + "Cache" + "\\" + "Graylast.d", gray_lastversion);
-                }
-                if (File.Exists(foldergame + "Cache" + "\\" + "GrayRelease.zip") == true)
-                {
-
-                }
-                
+                DownloadStart();
+                DownloadElements.DownloadGray();
             }
             if (screen == 101)
             {
@@ -203,53 +203,20 @@ namespace Orbit_Launcher
             }
             if (screen == 200)
             {
-                ButtonDownload.IsEnabled = false;
-                Mainpage.IsEnabled = false;
-                Graypage.IsEnabled = false;
-                Baetheexpage.IsEnabled = false;
-                FLinepage.IsEnabled = false;
-                Orpadpage.IsEnabled = false;
-                WhatToMountpage.IsEnabled = false;
-
-                using (var client = new WebClient())
-                {
-                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownComp);
-                    client.DownloadProgressChanged += ProgressPanel;
-                    await client.DownloadFileTaskAsync(orpad_linkarchive, folderprogramm + "Orpad" + "\\" + "Orpad.exe");
-                }
-                File.WriteAllText(folderprogramm + "Orpad" + "\\" + "Orpadlast.d", orpad_lastversion);
+                DownloadStart();
+                DownloadElements.DownloadOrpad();
             }
             if (screen == 201)
             {
-                ButtonDownload.IsEnabled = false;
-                Mainpage.IsEnabled = false;
-                Graypage.IsEnabled = false;
-                Baetheexpage.IsEnabled = false;
-                FLinepage.IsEnabled = false;
-                Orpadpage.IsEnabled = false;
-                WhatToMountpage.IsEnabled = false;
-
-                using (var client = new WebClient())
-                {
-                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownComp);
-                    client.DownloadProgressChanged += ProgressPanel;
-                    await client.DownloadFileTaskAsync(whattomount_linkarchive, folderprogramm + "Cache" + "\\" + "WhatToMount.zip");
-                }
-                File.WriteAllText(folderprogramm + "Cache" + "\\" + "WhatToMountlast.d", whattomount_lastversion);
+                DownloadStart();
+                DownloadElements.DownloadWhatToMount();
             }
             
         } //Загрузка
 
-        public void DownComp(object sender, AsyncCompletedEventArgs e)
+        public static void DownComp(object sender, AsyncCompletedEventArgs e)
         {
-            MainProgressBar.Value = 0;
-            ButtonDownload.IsEnabled = true;
-            Mainpage.IsEnabled = true;
-            Graypage.IsEnabled = true;
-            Baetheexpage.IsEnabled = true;
-            FLinepage.IsEnabled = true;
-            Orpadpage.IsEnabled = true;
-            WhatToMountpage.IsEnabled = true;
+            DownloadStop();
             PageOptions();
             ScreenSwith();
 
