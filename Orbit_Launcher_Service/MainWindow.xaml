@@ -9,6 +9,7 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="39,28,0,0" TextWrapping="Wrap" Text="Выполняется..." VerticalAlignment="Top" Height="38" Width="410" FontFamily="Arial Rounded MT Bold" FontSize="22" TextAlignment="Center"/>
         <ProgressBar HorizontalAlignment="Left" Height="23" Margin="22,81,0,0" VerticalAlignment="Top" Width="448" IsIndeterminate="True"/>
+        <TextBlock x:Name="text" Visibility="Hidden" Text="&quot;"></TextBlock>
 
     </Grid>
 </Window>

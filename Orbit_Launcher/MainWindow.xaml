@@ -10,6 +10,7 @@
     <Grid x:Name="MainGrid" >
         <TextBlock Margin="60,0,60,219" TextWrapping="Wrap" Width="673" TextAlignment="Center" Height="54" VerticalAlignment="Bottom"><Run Text="Привет"/><LineBreak/><Run Text="А ты же в курсе что ты не должен/должна видеть это да"/><Run Text="?"/><LineBreak/><Run Text="ну раз ты здесь тогда вот держи трек который у меня играл в тот момент когда я писал этот текст"/></TextBlock>
         <TextBox Margin="72,0,72,195" TextWrapping="Wrap" Text="https://open.spotify.com/track/0U9NHqvAJrI8QZnq1GmwDX?si=y7RpzwN3T8CwIMDRdEv8GA" TextAlignment="Center" IsReadOnly="True" Background="#FFE4E4E4" Height="23" VerticalAlignment="Bottom"/>
+        <TextBlock x:Name="symbol" Text="&quot;" Visibility="Hidden"/>
         <Grid x:Name="FirstGrid" Visibility="Hidden" >
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

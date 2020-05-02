@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,13 @@ namespace Orbit_Launcher_Service
         public MainWindow()
         {
             InitializeComponent();
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackingwhattomount.cmd";
+            var path2 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space";
+            var sys = text.Text;
+
+            string content = "7z x " + path2 + "\\Cache\\WhatToMount.zip -o"+ sys + path2 + "\\WhatToMount"+ sys;
+
+            File.WriteAllText(path, content);
         }
     }
 }

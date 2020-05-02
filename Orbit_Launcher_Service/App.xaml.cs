@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -18,7 +19,13 @@ namespace Orbit_Launcher_Service
         {
             foreach (string whattomount in e.Args)
             {
-                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackingwhattomount.cmd");
+                var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackingwhattomount.cmd";
+                string content = "7z x %cd%\\Cache\\WhatToMount.zip -o'%cd%\\WhatToMount' ";
+
+                File.WriteAllText(path, content);
+
+
+                //Process.Start(path);
                 Process.GetCurrentProcess().Kill();
             }
 

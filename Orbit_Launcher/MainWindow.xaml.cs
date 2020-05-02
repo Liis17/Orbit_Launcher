@@ -42,6 +42,8 @@ namespace Orbit_Launcher
         public static TextBlock versionofflinetext; // текст панель с версией на пк
         public static Button buttonstart; // кнопка "запустить"
 
+        public static TextBlock symboltext; // символ "
+
 
         #endregion
 
@@ -99,7 +101,7 @@ namespace Orbit_Launcher
             screen = 0;
             InitializeComponent();
             #region установка обьектов интерфейса в статические переменые
-
+            symboltext = symbol;
             archivertext = ArchiverText;
 
             archiverprogessbar = ArchiverProgessbar;
@@ -118,7 +120,7 @@ namespace Orbit_Launcher
             versiononlinetext = versiononline;
             versionofflinetext = versionoffline;
             #endregion
-
+            Startup.FileCreate();
             buttonstart.IsEnabled = false;
 
             Startup.CheckArchiver();
@@ -174,15 +176,22 @@ namespace Orbit_Launcher
                 FLinepage.IsEnabled = false;
                 Orpadpage.IsEnabled = false;
                 WhatToMountpage.IsEnabled = false;
-
-                using (var client = new WebClient())
+                if (File.Exists(foldergame + "Cache" + "\\" + "GrayRelease.zip") == false)
                 {
-                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownComp);
-                    client.DownloadProgressChanged += ProgressPanel;
-                    await client.DownloadFileTaskAsync(gray_linkarchive, foldergame + "Cache" + "\\" + "GrayRelease.zip");
-                    //await client.DownloadFileTaskAsync("https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/unpackinggray.cmd", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "GrayRelease.zip");
+                    using (var client = new WebClient())
+                    {
+                        client.DownloadFileCompleted += new AsyncCompletedEventHandler(DownComp);
+                        client.DownloadProgressChanged += ProgressPanel;
+                        await client.DownloadFileTaskAsync(gray_linkarchive, foldergame + "Cache" + "\\" + "GrayRelease.zip");
+                        //await client.DownloadFileTaskAsync("https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/unpackinggray.cmd", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "GrayRelease.zip");
+                    }
+                    File.WriteAllText(foldergame + "Cache" + "\\" + "Graylast.d", gray_lastversion);
                 }
-                File.WriteAllText(foldergame + "Cache" + "\\" + "Graylast.d", gray_lastversion);
+                if (File.Exists(foldergame + "Cache" + "\\" + "GrayRelease.zip") == true)
+                {
+
+                }
+                
             }
             if (screen == 101)
             {
@@ -208,7 +217,7 @@ namespace Orbit_Launcher
                     client.DownloadProgressChanged += ProgressPanel;
                     await client.DownloadFileTaskAsync(orpad_linkarchive, folderprogramm + "Orpad" + "\\" + "Orpad.exe");
                 }
-                File.WriteAllText(folderprogramm + "Cache" + "\\" + "Orpadlast.d", orpad_lastversion);
+                File.WriteAllText(folderprogramm + "Orpad" + "\\" + "Orpadlast.d", orpad_lastversion);
             }
             if (screen == 201)
             {
@@ -231,7 +240,7 @@ namespace Orbit_Launcher
             
         } //Загрузка
 
-        public async void DownComp(object sender, AsyncCompletedEventArgs e)
+        public void DownComp(object sender, AsyncCompletedEventArgs e)
         {
             MainProgressBar.Value = 0;
             ButtonDownload.IsEnabled = true;
@@ -247,12 +256,7 @@ namespace Orbit_Launcher
 
             if (screen == 100)
             {
-                using (var client = new WebClient())
-                {
-                    await client.DownloadFileTaskAsync("https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/unpackinggray.cmd", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackinggray.cmd");
-                }
-
-                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher_Service.exe", "-gray");
+                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackinggray.cmd");
                 ButtonStart.IsEnabled = true;
             }
             if (screen == 200)
@@ -261,15 +265,10 @@ namespace Orbit_Launcher
             }
             if (screen == 201)
             {
-                using (var client = new WebClient())
-                {
-                    await client.DownloadFileTaskAsync("https://github.com/Liis17/Orbit_Launcher/releases/download/linkfordownload/unpackingwhattomount.cmd", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackingwhattomount.cmd");
-                }
-
-                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher_Service.exe", "-whattomount");
+                Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackingwhattomount.cmd");
                 ButtonStart.IsEnabled = true;
             }
-        }
+        } //действие после загрузки
 
         public void ProgressPanel(object sender, DownloadProgressChangedEventArgs e)
         {

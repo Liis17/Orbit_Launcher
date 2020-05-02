@@ -26,6 +26,23 @@ namespace Orbit_Launcher
             Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "Orbit_Launcher");
         } //создание папок
 
+        public static void FileCreate()
+        {
+            var pathfile1 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackingwhattomount.cmd";
+            var pathfile2 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "unpackinggray.cmd";
+
+
+            var pathfolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space";
+
+            var sys = MainWindow.symboltext.Text;
+
+            string content1 = "7z x " + pathfolder + "\\Cache\\WhatToMount.zip -o" + sys + pathfolder + "\\WhatToMount" + sys;
+            string content2 = "7z x " + pathfolder + "\\Cache\\GrayRelease.zip -o" + sys + pathfolder + "\\Gray" + sys;
+
+            File.WriteAllText(pathfile1, content1);
+            File.WriteAllText(pathfile2, content2);
+        }
+
         public static void CheckArchiver()
         {
             string Archiverexe = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + "Orbit_in_Space" + "\\" + "7z.exe";
