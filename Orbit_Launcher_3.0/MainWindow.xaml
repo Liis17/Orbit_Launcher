@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Orbit_Launcher_3._0"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="1300">
     <Grid>
-        
+        <Grid.Background>
+            <RadialGradientBrush GradientOrigin="0.5,0">
+                <GradientStop Color="#FF1D1D1D"/>
+                <GradientStop Color="#FF131313" Offset="1"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+
     </Grid>
 </Window>

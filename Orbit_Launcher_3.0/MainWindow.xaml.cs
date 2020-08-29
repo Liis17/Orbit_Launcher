@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using sf = Orbit_Launcher_3._0.StringField;
 
 namespace Orbit_Launcher_3._0
 {
@@ -22,7 +24,16 @@ namespace Orbit_Launcher_3._0
     {
         public MainWindow()
         {
+            CreateFolder();
             InitializeComponent();
+        }
+
+        public void CreateFolder()
+        {
+            Directory.CreateDirectory(sf.mainfolder);
+            Directory.CreateDirectory(sf.tempfolder);
+            MessageBox.Show(sf.tempfolder);
+            File.WriteAllText(sf.tempfolder, "тестовый текст");
         }
     }
 }
