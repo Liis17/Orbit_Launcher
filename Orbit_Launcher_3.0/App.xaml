@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Orbit_Launcher_3._0"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>

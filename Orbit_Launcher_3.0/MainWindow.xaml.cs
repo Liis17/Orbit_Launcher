@@ -24,8 +24,10 @@ namespace Orbit_Launcher_3._0
     {
         public MainWindow()
         {
+            MessageBox.Show("Сейчас будут запрошены права администратора");
             CreateFolder();
             InitializeComponent();
+            File.WriteAllText(sf.tempfolder, "тестовый текст");
         }
 
         public void CreateFolder()
@@ -33,7 +35,9 @@ namespace Orbit_Launcher_3._0
             Directory.CreateDirectory(sf.mainfolder);
             Directory.CreateDirectory(sf.tempfolder);
             MessageBox.Show(sf.tempfolder);
-            File.WriteAllText(sf.tempfolder, "тестовый текст");
+            //
         }
+
+        
     }
 }
