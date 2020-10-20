@@ -1,0 +1,21 @@
+﻿<Window x:Class="OrbitLaunch.WindowLauncher"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OrbitLaunch"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Title="OrbitLaunch" Height="750" Width="1400">
+
+    <Grid Background="#1A1A1A">
+        <!--Основной грид-->
+
+        <Grid>
+            <!--Верхняя строка-->
+
+
+        </Grid>
+
+    </Grid>
+</Window>
