@@ -17,7 +17,7 @@ namespace OrbitLaunch
     /// <summary>
     /// Логика взаимодействия для WindowLauncher.xaml
     /// </summary>
-    public partial class WindowLauncher : Window
+    public partial class WindowLauncher
     {
         public WindowLauncher()
         {

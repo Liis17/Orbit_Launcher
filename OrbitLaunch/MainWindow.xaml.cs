@@ -34,7 +34,7 @@ namespace OrbitLaunch
         public void SetTimer()
         {
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(100);
+            timer.Interval = TimeSpan.FromMilliseconds(5);
             timer.Tick += OnTimedEvent;
             timer.Start();
 
@@ -53,10 +53,9 @@ namespace OrbitLaunch
             {
                 StartupProgressBar.Foreground = Brushes.Green;
                 timer.Stop();
-            }
-            if(StartupProgressBar.Value == 102)
-            {
-                MessageBox.Show("авфыв");
+                WindowLauncher win = new WindowLauncher();
+                win.Show();
+                StartWindow.Close();
             }
             StartupProgressBar.Value += 1;
         }
