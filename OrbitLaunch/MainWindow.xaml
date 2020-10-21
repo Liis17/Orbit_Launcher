@@ -1,23 +1,25 @@
-﻿<Window x:Class="OrbitLaunch.MainWindow"
+﻿<fw:AcrylicWindow x:Class="OrbitLaunch.MainWindow"
         x:Name="StartWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OrbitLaunch"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
         WindowStyle="None"
+        AcrylicWindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Title="OrbitLaunch" Height="150" Width="600">
+        Title="OrbitLaunch" Height="100" Width="450">
 
     <Grid Background="#1A1A1A">
 
-        <ProgressBar x:Name="StartupProgressBar" Maximum="100" Value="0" HorizontalAlignment="Left" Height="32" Margin="10,108,0,0" VerticalAlignment="Top" Width="580"/>
-        <TextBlock x:Name="StartupTextBlock" HorizontalAlignment="Left" Margin="10,56,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="47" Width="580" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="25" TextAlignment="Center"/>
+        <ProgressBar x:Name="StartupProgressBar" Maximum="2" Value="1" Margin="10,0,10,10" Height="19" VerticalAlignment="Bottom"/>
+        <TextBlock x:Name="StartupTextBlock" Margin="10,0,10,34" TextWrapping="Wrap" Text="..." Foreground="White" FontFamily="Segoe UI Semibold" FontSize="25" TextAlignment="Center" Height="47" VerticalAlignment="Bottom"/>
         <!--Основной грид-->
 
 
 
     </Grid>
-</Window>
+</fw:AcrylicWindow>
