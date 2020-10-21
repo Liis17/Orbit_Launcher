@@ -163,7 +163,7 @@
     <Resource Include="Assets\Icon\FoxKool.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Images\innetwork\testpick.png" />
+    <None Include="Assets\Images\innetwork\testpick.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Images\inexe\" />
