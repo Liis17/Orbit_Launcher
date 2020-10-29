@@ -7,21 +7,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OrbitLaunch"
         mc:Ignorable="d"
-        TintOpacity="0"
+        TintOpacity="0.6"
+        FallbackColor="#191919"
+        TintColor="#191919"
         NoiseOpacity="0.01"
         AcrylicWindowStyle="NoIcon"
         ResizeMode="CanMinimize"
         Title="" Height="750" Width="1400">
 
-    <Grid Background="#1A1A1A00">
+    <Grid Background="#3F000000">
         <!--Основной грид-->
 
         <Grid Margin="0,0,1043,0" >
+            <ScrollViewer HorizontalAlignment="Left" 
+                          Height="701" 
+                          Margin="10,10,0,0" 
+                          HorizontalScrollBarVisibility="Disabled" 
+                          VerticalScrollBarVisibility="Auto" 
+                          VerticalAlignment="Top" Width="331">
+                <Grid>
+                    <TextBlock TextWrapping="Wrap" FontSize="25" Text="БИБЛИОТЕКА" Margin="0,0,0,648" TextAlignment="Center" Foreground="White"/>
+                    <Separator Margin="0,10,0,635"></Separator>
+
+
+                </Grid>
+
+
+
+            </ScrollViewer>
             <!--Список-->
 
-            
+
         </Grid>
-        <Grid Background="#3F000000" Margin="357,0,0,0" >
+        <Grid  Margin="357,0,0,0" >
+            <TabControl Margin="0" Background="#BF232323" Foreground="{x:Null}" BorderBrush="{x:Null}">
+                <TabItem Height="35" Width="100" Header="Главная" BorderBrush="#FF1D1D1D" Foreground="White" Background="{x:Null}"/>
+                <TabItem Height="35" Width="100" Header="Загрузка" BorderBrush="#FF1D1D1D" Foreground="White" Background="{x:Null}"/>
+                <TabItem Height="35" Width="100" Header="Скриншоты" BorderBrush="#FF1D1D1D" Foreground="White" Background="{x:Null}">
+                    <Button Content="Button" Height="100" Width="75"/>
+
+                </TabItem>
+            </TabControl>
             <!--Основной блок-->
 
 

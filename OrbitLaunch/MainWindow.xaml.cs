@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -27,28 +28,29 @@ namespace OrbitLaunch
     public partial class MainWindow
     {
 
-        DispatcherTimer timer;
-        int time;
+        DispatcherTimer _timer;
+        //int time;
         public MainWindow()
         {
             InitializeComponent();
             StartupProgressBar.Maximum = 2;
             StartupProgressBar.Value = 0;
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) + "\\OrbitLaunch");
             SetTimer();
         }
 
         public void SetTimer()
         {
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(199);
-            timer.Tick += OnTimedEvent;
-            timer.Start();
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromMilliseconds(199);
+            _timer.Tick += OnTimedEvent;
+            _timer.Start();
         }
 
         public void OnTimedEvent(object sender, EventArgs e)
         {
             CheckNetwork();
-            timer.Stop();
+            _timer.Stop();
             
         }
 
@@ -59,7 +61,7 @@ namespace OrbitLaunch
             {
                 WebClient web = new WebClient();
                 var adress = "https://upload.wikimedia.org/wikipedia/en/thumb/5/51/Overwatch_cover_art.jpg/220px-Overwatch_cover_art.jpg";
-                var filename = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\overwatch.jpg";
+                var filename = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) + "\\OrbitLaunch\\overwatch.jpg";
                 web.DownloadFile(adress, filename);
                 StartupProgressBar.Value++;
             }
@@ -89,7 +91,7 @@ namespace OrbitLaunch
         {
             if (StartupProgressBar.Value == StartupProgressBar.Maximum)
             {
-                timer.Stop();
+                _timer.Stop();
                 StartupProgressBar.Foreground = Brushes.Green;
                 WindowLauncher win = new WindowLauncher();
                 win.Show();
